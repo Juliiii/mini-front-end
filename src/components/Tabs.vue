@@ -32,10 +32,11 @@ export default {
     this.activeTab = this.configs.length ? this.configs[0].text : '';
   },
   mounted () {
-    const dom = document.querySelectorAll('#tabs .tabs-item')[0];
-    const rect = dom.getBoundingClientRect();
-    this.tabsItemWidth = rect.width;
-    this.transformXOffset = rect.left;
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResize);
   },
   data () {
     return {
@@ -49,39 +50,17 @@ export default {
       const dom = document.querySelectorAll('#tabs .tabs-item')[index];
       this.transformXOffset = dom.getBoundingClientRect().left;
       this.activeTab = config.text;
+    },
+    onResize () {
+      const dom = document.querySelectorAll('#tabs .tabs-item')[0];
+      const rect = dom.getBoundingClientRect();
+      this.tabsItemWidth = rect.width;
+      this.transformXOffset = rect.left;
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.tabs-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 56px;
-  border-bottom: 1px solid #d7d7d7;
-  .tabs-row {
-    display: flex;
-    .tabs-column {
-      flex: 1;
-      line-height: 56px;
-      .tabs-item {
-        font-size: 18px;
-        color: #7c7c7c;
-        display: inline-block;
-      }
-
-      .tabs-active {
-        color: #85cdbf;
-      }
-    }
-  }
-  .tabs-line {
-    width: 20px;
-    height: 2px;
-    background-color: #85cdbf;
-    transition: all .3s;
-  }
-}
-
+<style lang="scss">
+@import '../assets/style/tabs.scss';
 </style>
