@@ -1,14 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <tabs :configs="tabsConfigs" />
     <router-view/>
   </div>
 </template>
 
 <script>
+import Tabs from '@/components/Tabs';
 export default {
-  name: 'App'
-}
+  name: 'App',
+  components: {
+    Tabs
+  },
+  data () {
+    return {
+      tabsConfigs: [
+        { text: '房源评价' },
+        { text: '我要合租' },
+        { text: '个人中心' }
+      ]
+    };
+  }
+};
 </script>
 
 <style>
@@ -18,7 +31,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
 <style lang="scss">
