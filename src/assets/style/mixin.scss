@@ -1,0 +1,14 @@
+// pixels to rems
+@function rem($px) {
+    @return $px / 750 * 16rem;
+}
+
+
+/* 组件样式
+@mixin u-detail_btn {
+    .u-detail_btn {
+        font-size: rem(24);
+        color: #162F67;
+        text-decoration: underline;
+    }
+}*/

@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>mini-front-end</title>
-  </head>
-  <body>
+    <script>
+        (function(win, doc) {
+            var isMob = !!navigator.userAgent.match(/AppleWebKit.*Mobile.*/);
+
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (isMob) {
+                        window.baseFontSize = 20 * (clientWidth / 320);
+                        docEl.style.fontSize = window.baseFontSize + 'px';
+                    } else {
+                        window.baseFontSize = 20 * (640 / 320);
+                        docEl.style.fontSize = window.baseFontSize + 'px';
+
+                        var cnn = doc.getElementById('app');
+                        if (!cnn) {
+                            return
+                        }
+                        if (!/(g-mobile)/.test(cnn.className)) {
+                            cnn.className = cnn.className + ' g-mobile';
+                        }
+                    }
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(window, document)
+    </script>
+</head>
+
+<body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
-  </body>
+</body>
+
 </html>
