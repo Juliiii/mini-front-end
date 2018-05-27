@@ -67,6 +67,7 @@ export default {
       line-height: 56px;
       .tabs-item {
         font-size: 18px;
+        color: #7c7c7c;
         display: inline-block;
       }
 
