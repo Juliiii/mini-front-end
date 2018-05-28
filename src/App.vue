@@ -7,10 +7,12 @@
 
 <script>
 import Tabs from '@/components/Tabs';
+import Button from '@/components/Button';
 export default {
   name: 'App',
   components: {
-    Tabs
+    Tabs,
+    Button
   },
   data () {
     return {
