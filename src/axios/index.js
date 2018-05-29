@@ -16,17 +16,12 @@ axios.defaults.baseURL = '';
 //   });
 
 // http response 拦截器
-axios.interceptors.response.use(
-  response => {
-    return response;
-  },
-  error => {
-    if (error.response) {
-      switch (error.response.status) {
-
-      }
-    }
-    return Promise.reject(error.response.data);
-  });
+// axios.interceptors.response.use(
+//   response => {
+//     return response;
+//   },
+//   error => {
+//     return response;
+//   });
 
 export default axios;

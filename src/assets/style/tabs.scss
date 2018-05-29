@@ -3,13 +3,13 @@
 .tabs-wrapper {
   display: flex;
   flex-direction: column;
-  height: 56px;
+  height: 40px;
   border-bottom: 1px solid #d7d7d7;
   .tabs-row {
     display: flex;
     .tabs-column {
       flex: 1;
-      line-height: 56px;
+      line-height: 40px;
       .tabs-item {
         font-size: 18px;
         color: #7c7c7c;

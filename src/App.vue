@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <tabs :configs="tabsConfigs" />
+    <search />
     <router-view/>
   </div>
 </template>
@@ -8,11 +9,13 @@
 <script>
 import Tabs from '@/components/Tabs';
 import Button from '@/components/Button';
+import Search from '@/components/Search';
 export default {
   name: 'App',
   components: {
     Tabs,
-    Button
+    Button,
+    Search
   },
   data () {
     return {
@@ -28,7 +31,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -36,5 +39,5 @@ export default {
 }
 </style>
 <style lang="scss">
-@import './assets/style/common';
+@import "./assets/style/common";
 </style>
