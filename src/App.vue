@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <tabs :configs="tabsConfigs" />
-    <search />
     <router-view/>
   </div>
 </template>
@@ -20,7 +19,7 @@ export default {
   data () {
     return {
       tabsConfigs: [
-        { text: '房源评价' },
+        { text: '房源评价', link: '/comments' },
         { text: '我要合租' },
         { text: '个人中心' }
       ]

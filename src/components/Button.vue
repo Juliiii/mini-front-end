@@ -2,7 +2,9 @@
   <IButton
     @click="onClick"
     :style="{
-      width: '100px',
+      padding: '3px 7px',
+      height: '30px',
+      width: '112px',
       fontSize,
       borderRadius,
       background: bgColor,
@@ -38,10 +40,10 @@ export default {
   computed: {
     fontSize () {
       if (this.type === 8 || this.type === 9) {
-        return '14px';
+        return '12px';
       }
 
-      return '16px';
+      return '14px';
     },
     borderRadius () {
       switch (this.type) {
@@ -118,5 +120,4 @@ export default {
 </script>
 
 <style>
-
 </style>

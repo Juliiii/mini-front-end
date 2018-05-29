@@ -202,7 +202,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 .search-wrapper {
-  padding: 5px;
+  padding: 10px 0;
   .search-input {
     width: 90%;
   }

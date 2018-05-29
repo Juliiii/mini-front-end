@@ -1,15 +1,33 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
+import Comments from '@/pages/Comments';
+import CommentsList from '@/pages/Comments/list';
+import CommentsMap from '@/pages/Comments/echarts';
+import CommentsPublish from '@/pages/Comments/publish';
 
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      path: '/comments',
+      name: 'Comments',
+      component: Comments,
+      children: [
+        {
+          path: '',
+          component: CommentsList
+        },
+        {
+          path: 'publish',
+          component: CommentsPublish
+        },
+        {
+          path: 'map',
+          component: CommentsMap
+        }
+      ]
     },
     // 搜索页面
     {

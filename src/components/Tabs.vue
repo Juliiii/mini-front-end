@@ -32,6 +32,7 @@ export default {
     this.activeTab = this.configs.length ? this.configs[0].text : '';
   },
   mounted () {
+    this.$router.push(this.configs[0].link)
     window.addEventListener('resize', this.onResize);
     this.onResize();
   },
@@ -62,5 +63,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/style/tabs.scss';
+@import "../assets/style/tabs.scss";
 </style>
