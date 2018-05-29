@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <tabs :configs="tabsConfigs" />
-    <router-view/>
+    <message />
+    <!-- <router-view/> -->
   </div>
 </template>
 
@@ -9,12 +10,15 @@
 import Tabs from '@/components/Tabs';
 import Button from '@/components/Button';
 import Search from '@/components/Search';
+import Message from '@/components/Message';
+
 export default {
   name: 'App',
   components: {
     Tabs,
     Button,
-    Search
+    Search,
+    Message
   },
   data () {
     return {

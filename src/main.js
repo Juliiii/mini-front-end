@@ -6,6 +6,9 @@ import router from './router';
 import axios from './axios';
 import 'iview/dist/styles/iview.css';
 import { Rate, Radio, Checkbox, Button, Icon, Input, Option, Form, Row, Col, FormItem, Select, CheckboxGroup, RadioGroup, TimePicker, DatePicker } from 'iview';
+import { Icon } from 'iview';
+
+Vue.component('Icon', Icon)
 
 Vue.component('Icon', Icon);
 Vue.component('IButton', Button);
@@ -28,8 +31,8 @@ Vue.prototype.axios = axios;
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 });

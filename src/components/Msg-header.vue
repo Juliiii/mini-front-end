@@ -1,0 +1,54 @@
+<template>
+	<div class="m-header-wrapper">
+		<div class="tit">
+			<img src="../assets/img/11.jpg" alt="">
+			<div class="tit-info" v-if="tabName == 'comment'">
+				<div>
+					发布于<span class="addr">{{personInfo.addr}}</span><br/>
+					<span class="cycle">{{personInfo.cycle}}</span><span class="time">{{personInfo.time}}</span>
+				</div>
+			</div>
+			<div class="head-info" v-if="tabName == 'joint'">
+				{{personInfo.sex}} &nbsp;{{personInfo.age}}岁
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+  props: {
+		personInfo: {
+			type: Object,
+			default: function(){
+				return {
+					sex: '男',
+					age: 0,
+					addr: '不详',
+					cycle: '',
+					time: ''
+				}
+				
+			}
+
+		},
+		/*
+		评价：comment
+		合租：joint
+		 */
+		tabName: {
+			type: String,
+      required: true,
+      default: () => ''
+		}
+  },
+  data () {
+    return {
+      
+    };
+  }
+}
+</script>
+<style lang="scss">
+@import '../assets/style/msg-header.scss';
+</style>
