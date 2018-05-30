@@ -15,7 +15,7 @@
 <script>
 // type
 // 1 代表 评价列表
-// 2 代表 评价地图
+// 2 代表 数据总览
 // 3 代表 我要评价
 // 4 代表 重新填写
 // 5 代表 发布评价
@@ -98,7 +98,7 @@ export default {
         case 1:
           return '评价列表';
         case 2:
-          return '评价地图';
+          return '数据总览';
         case 3:
           return '我要评价';
         case 4:

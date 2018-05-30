@@ -5,9 +5,31 @@ import App from './App';
 import router from './router';
 import axios from './axios';
 import 'iview/dist/styles/iview.css';
-import { Rate, Radio, Checkbox, Button, Icon, Input, Option, Form, Row, Col, FormItem, Select, CheckboxGroup, RadioGroup, TimePicker, DatePicker } from 'iview';
+import {
+  Spin,
+  Scroll,
+  Card,
+  Rate,
+  Radio,
+  Checkbox,
+  Button,
+  Icon,
+  Input,
+  Option,
+  Form,
+  Row,
+  Col,
+  FormItem,
+  Select,
+  CheckboxGroup,
+  RadioGroup,
+  TimePicker,
+  DatePicker
+} from 'iview';
 
-
+Vue.component('Spin', Spin);
+Vue.component('Scroll', Scroll);
+Vue.component('Card', Card);
 Vue.component('Icon', Icon);
 Vue.component('IButton', Button);
 Vue.component('IInput', Input);
@@ -29,8 +51,8 @@ Vue.prototype.axios = axios;
 
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    components: { App },
-    template: '<App/>'
+  el: '#app',
+  router,
+  components: { App },
+  template: '<App/>'
 });
