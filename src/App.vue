@@ -3,6 +3,11 @@
     <tabs :configs="tabsConfigs" />
     <!-- <message /> -->
     <router-view/>
+    <Dialog 
+      v-if="dialogStatus"
+      @touchend.native = "slide($event)"
+      :on-close="() => dialogStatus = false" />
+    <!-- <router-view/> -->
   </div>
 </template>
 
@@ -10,7 +15,8 @@
 import Tabs from '@/components/Tabs';
 import Button from '@/components/Button';
 import Search from '@/components/Search';
-import Message from '@/components/Message';
+import Dialog from '@/components/Dialog';
+
 
 export default {
   name: 'App',
@@ -18,7 +24,7 @@ export default {
     Tabs,
     Button,
     Search,
-    Message
+    Dialog
   },
   data () {
     return {
@@ -26,9 +32,17 @@ export default {
         { text: '房源评价', link: '/comments' },
         { text: '我要合租' },
         { text: '个人中心' }
-      ]
+      ],
+      dialogStatus: true
     };
+  },
+  methods: {
+    slide(e) {
+      e.stopPropagation()
+      //e.preventDefault()
+    }
   }
+  
 };
 </script>
 

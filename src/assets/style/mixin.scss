@@ -14,6 +14,29 @@ $blue: #85cdbf !default;
     }
 }*/
 
+%dialog {
+    display: table;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .57);
+    z-index: 5;
+    // &.z-active {
+    //   display: table;
+    // }
+    .box {
+        display: table-cell;
+        vertical-align: middle;
+        .dialog {
+            width: rem(500);
+            margin: auto;
+            position: relative;
+        }
+    }
+}
+
 @mixin u-message {
     .message {
         font-size: rem(24);

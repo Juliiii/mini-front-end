@@ -13,4 +13,23 @@
         font-size: rem(30);
         word-wrap: break-word;
     }
+    .s-btn {
+        text-align: right;
+        font-size: rem(30);
+        padding-bottom: rem(20);
+        a {
+            color: $blue;
+        }
+    }
+}
+
+.s-message-wrapper {
+    margin-top: rem(30);
+}
+
+#tarea {
+    margin: rem(20) 0;
+    width: 100%;
+    height: rem(200);
+    border: 0;
 }
