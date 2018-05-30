@@ -1,0 +1,38 @@
+@import 'mixin';
+.m-header-wrapper {
+    text-align: left;
+    position: absolute;
+    top: - rem(50);
+    left: rem(30);
+    right: rem(30);
+    .tit {
+        display: flex;
+        color: #888;
+        img {
+            width: rem(100);
+            height: rem(100);
+            margin-right: rem(30);
+            border-radius: 100%;
+        }
+        .tit-info,
+        .head-info {
+            display: flex;
+            flex: 1;
+            line-height: rem(170);
+        }
+        .cycle,
+        .addr {
+            color: $blue;
+        }
+        .time {
+            color: #888;
+        }
+    }
+    .info-addr,
+    .info-time {
+        flex: 1;
+    }
+    .info-time {
+        text-align: right;
+    }
+}

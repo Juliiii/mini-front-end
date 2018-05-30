@@ -3,6 +3,7 @@
     @return $px / 750 * 16rem;
 }
 
+$blue: #85cdbf !default;
 
 /* 组件样式
 @mixin u-detail_btn {
@@ -12,3 +13,14 @@
         text-decoration: underline;
     }
 }*/
+
+@mixin u-message {
+    .message {
+        font-size: rem(24);
+        img {
+            width: rem(100);
+            height: rem(100);
+            // border-radius: 50%;
+        }
+    }
+}
