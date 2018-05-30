@@ -3,8 +3,10 @@
 		<div class="tit">
 			<img src="../assets/img/11.jpg" alt="">
 			<div class="tit-info" v-if="tabName == 'comment'">
-				<div>
-					发布于<span class="addr">{{personInfo.addr}}</span><br/>
+				<div class="info-addr">
+					发布于<span class="addr">{{personInfo.addr}}</span>
+				</div>
+				<div class="info-time">
 					<span class="cycle">{{personInfo.cycle}}</span><span class="time">{{personInfo.time}}</span>
 				</div>
 			</div>

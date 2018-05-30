@@ -1,13 +1,15 @@
 @import 'mixin';
 .message-wrapper {
     background-color: #fff;
-    // border: 1px solid #eee;
     box-shadow: 0 0 10px #eed;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: left;
-    padding: rem(10) rem(30);
+    padding: 0 rem(30);
+    margin-top: rem(50);
+    position: relative;
     .content {
         margin: rem(20) 0;
+        padding-top: rem(70);
         font-size: rem(30);
         word-wrap: break-word;
     }

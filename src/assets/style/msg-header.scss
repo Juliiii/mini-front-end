@@ -1,7 +1,10 @@
 @import 'mixin';
 .m-header-wrapper {
     text-align: left;
-    // padding: rem(10) rem(30);
+    position: absolute;
+    top: - rem(50);
+    left: rem(30);
+    right: rem(30);
     .tit {
         display: flex;
         color: #888;
@@ -13,20 +16,23 @@
         }
         .tit-info,
         .head-info {
+            display: flex;
             flex: 1;
-            line-height: rem(50);
-        }
-        .head-info {
-            line-height: rem(100);
+            line-height: rem(170);
         }
         .cycle,
         .addr {
             color: $blue;
-            // margin-left: rem(5);
         }
         .time {
             color: #888;
-            // color: #FFC100;
         }
+    }
+    .info-addr,
+    .info-time {
+        flex: 1;
+    }
+    .info-time {
+        text-align: right;
     }
 }

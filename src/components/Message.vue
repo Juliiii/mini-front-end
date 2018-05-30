@@ -22,7 +22,7 @@ export default {
   },
   data () {
     return {
-			tabName: 'comment',
+			tabName: 'joint',
 			personInfo: {
 				sex: '女',
 				age: 18,
