@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <tabs :configs="tabsConfigs" />
-    <message />
-    <!-- <router-view/> -->
+    <!-- <message /> -->
+    <router-view/>
   </div>
 </template>
 
