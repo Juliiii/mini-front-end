@@ -6,6 +6,9 @@ import CommentsList from '@/pages/Comments/list';
 import CommentsMap from '@/pages/Comments/echarts';
 import CommentsPublish from '@/pages/Comments/publish';
 
+import Personal from '@/pages/Personal';
+import Edit from '@/pages/Edit';
+
 Vue.use(Router);
 
 export default new Router({
@@ -29,6 +32,17 @@ export default new Router({
         }
       ]
     },
+    // 个人中心页面
+    {
+      path: '/personal',
+      name: 'Personal',
+      component: Personal
+    },
+    {
+      path: '/edit',
+      name: 'Edit',
+      component: Edit
+    },
     // 搜索页面
     {
       path: '/search',
@@ -39,12 +53,6 @@ export default new Router({
     {
       path: '/rent',
       name: 'Rent',
-      component: HelloWorld
-    },
-    // 个人中心页面
-    {
-      path: '/personal',
-      name: 'Personal',
       component: HelloWorld
     },
     // 认证页面

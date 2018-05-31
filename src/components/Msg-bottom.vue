@@ -6,7 +6,7 @@
 				{{moodInfo.thumbNum}}
 				<Icon :type="mIconType"></Icon>{{moodInfo.moodNum}}
 			</div>
-			<div class="tag" v-for="(tag, index) in tags">
+			<div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
 			</div>
 		</div>
@@ -15,7 +15,7 @@
 			<div class="commu-num">
 				{{commuNum}}人已联系
 			</div>
-			<div class="tag" v-for="(tag, index) in tags">
+			<div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
 			</div>
 		</div>

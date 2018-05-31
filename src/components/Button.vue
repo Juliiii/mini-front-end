@@ -2,6 +2,9 @@
   <IButton
     @click="onClick"
     :style="{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
       padding: '3px 7px',
       height: '30px',
       width: '112px',

@@ -41,12 +41,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.comments-list {
-  width: 100%;
-  .list-item {
-    width: 90%;
-    margin: 30px auto 10px auto;
-  }
-}
+<style lang="scss">
+@import '../../assets/style/comments-list.scss';
 </style>

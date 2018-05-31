@@ -6,6 +6,7 @@ import router from './router';
 import axios from './axios';
 import 'iview/dist/styles/iview.css';
 import {
+  Avatar,
   Spin,
   Scroll,
   Card,
@@ -27,6 +28,7 @@ import {
   DatePicker
 } from 'iview';
 
+Vue.component('Avatar', Avatar);
 Vue.component('Spin', Spin);
 Vue.component('Scroll', Scroll);
 Vue.component('Card', Card);
