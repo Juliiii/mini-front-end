@@ -51,7 +51,6 @@ Vue.component('DatePicker', DatePicker);
 Vue.component('Radio', Radio);
 Vue.component('Rate', Rate);
 Vue.component('Checkbox', Checkbox);
-Vue.component('Slider', Slider);
 
 
 map(components, (cmp, name) => Vue.component(cmp.name, cmp))

@@ -18,7 +18,7 @@
       :on-close="() => dialogStatus = false" />
   </Scroll>
   <div class="btn-publish">
-    <m-button :type="6"/>
+    <m-button :type="6" @click="$router.push('/rent/publish')"/>
   </div>
 </div>
   
@@ -60,19 +60,25 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/style/mixin.scss';
+div.search-wrapper {
+  padding-bottom: 0;
+}
 .comments-list {
   width: 100%;
+
   .list-item {
     width: 90%;
-    margin: 30px auto 10px auto;
+    margin: 10 auto 30px auto;
   }
 }
 .btn-publish {
   height: rem(100);
   padding-top: rem(20);
+  display: flex;
   position: fixed;
   bottom: 0;
   width: 100%;
   background: linear-gradient(RGBA(255,255,255,.75), RGBA(255,255,255,1));
+  justify-content: center;
 }
 </style>

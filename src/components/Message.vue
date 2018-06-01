@@ -25,11 +25,11 @@ export default {
 				time: '10分钟'
 			},
 			tags:[
-				'干净',
-				'干净',
-				'干净',
-				'干净',
-				'干净'
+				'干净1',
+				'干净2',
+				'干净3',
+				'干净4',
+				'干净5'
 			],
 			commuNum: 10,
 			content:'fdsfdsfdsfdssssssssssssssssssssssssssssssssssssssssssssssssssfdsf'

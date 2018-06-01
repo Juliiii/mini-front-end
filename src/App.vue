@@ -20,7 +20,7 @@ export default {
     return {
       tabsConfigs: [
         { text: '房源评价', link: '/comments' },
-        { text: '我要合租' },
+        { text: '我要合租', link: '/rent' },
         { text: '个人中心', link: '/personal' }
       ],
       dialogStatus: true
