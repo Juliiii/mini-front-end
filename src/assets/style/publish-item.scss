@@ -1,0 +1,38 @@
+.publish-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 10px 5%;
+  .publish-item-area {
+    text-align: left;
+    color: #53b19e;
+    span {
+      color: #d7d7d7;
+    }
+  }
+
+  .publish-item-body {
+    display: flex;
+    width: 100%;
+    margin: 10px 0;
+    justify-content: flex-start;
+    .publish-item-traffic {
+      flex: 1;
+      color: #d7d7d7;
+      span {
+        color: #53b19e;
+      }
+    }
+    .publish-item-content {
+      flex: 3;
+      text-align: left;
+      font-size: 14px;
+    }
+  }
+
+  .publish-item-msg-button {
+    width: 100%;
+  }
+}

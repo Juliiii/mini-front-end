@@ -65,10 +65,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-#echart {
-  height: 400px;
-  width: 90%;
-  margin: 30px auto 0 auto;
-}
+<style lang="scss">
+@import '../../assets/style/comments-charts.scss';
 </style>

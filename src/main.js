@@ -9,6 +9,7 @@ import 'iview/dist/styles/iview.css';
 import components from '@/components'
 
 import {
+    Avatar,
     Spin,
     Scroll,
     Card,
@@ -27,10 +28,10 @@ import {
     CheckboxGroup,
     RadioGroup,
     TimePicker,
-    DatePicker,
-    Slider
+    DatePicker
 } from 'iview';
 
+Vue.component('Avatar', Avatar);
 Vue.component('Spin', Spin);
 Vue.component('Scroll', Scroll);
 Vue.component('Card', Card);

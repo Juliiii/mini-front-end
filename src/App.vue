@@ -21,7 +21,7 @@ export default {
       tabsConfigs: [
         { text: '房源评价', link: '/comments' },
         { text: '我要合租' },
-        { text: '个人中心' }
+        { text: '个人中心', link: '/personal' }
       ],
       dialogStatus: true
     };
