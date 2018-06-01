@@ -11,20 +11,6 @@ export default {
   data() {
     return {
     }
-  },
-  mounted() {
-    this.onResize();
-    window.addEventListener('resize', this.onResize);
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.onResize);
-  },
-  methods: {
-    onResize() {
-      const dom = document.documentElement || document.body;
-      const clientHeight = dom.clientHeight;
-      this.height = clientHeight - 93;
-    }
   }
 }
 </script>
