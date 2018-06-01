@@ -11,12 +11,9 @@
 </template>
 
 <script>
-import Msgbottom from '@/components/msg-bottom';
 
 export default {
-	components: {
-		Msgbottom
-  },
+  name: 'm-sentMessage',
   data () {
     return {
 

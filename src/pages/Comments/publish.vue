@@ -37,18 +37,14 @@
     <IInput class="form-item" v-model="form.desc" type="textarea" :autosize="{minRows: 4,maxRows: 8}" placeholder="例如：周围环境很好，很方便"></IInput>
   </div>
   <div class="button-group">
-    <Button :type="4" class="button-reset" @click="onReset"/>
-    <Button :type="5" class="button-publish" />
+    <m-button :type="4" class="button-reset" @click="onReset"/>
+    <m-button :type="5" class="button-publish" />
   </div>
 </div>
 </template>
 
 <script>
-import Button from '@/components/Button';
     export default {
-      components: {
-        Button,
-      },
       data () {
         return {
           isShow: false,
@@ -58,7 +54,8 @@ import Button from '@/components/Button';
             way: '',
             time: '',
             desc: ''
-          }
+          },
+          valueCustomText: 3
         }
       },
       methods: {

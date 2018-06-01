@@ -176,6 +176,7 @@ const res ={
 import { debounce } from '@/util';
 
 export default {
+  name: 'm-search',
   data () {
     return {
       keyWord: '',

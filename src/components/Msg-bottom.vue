@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		
-		<div v-if="tabName == 'joint'" class="icon-wrapper-joint">
+		<div v-if="tabName == 'rent'" class="icon-wrapper-joint">
 			<div class="commu-num">
 				{{commuNum}}人已联系
 			</div>
@@ -24,10 +24,11 @@
 
 <script>
 export default {
+	name: 'm-msg-bottom',
   props: {
 		/*
 		评价：comment
-		合租：joint
+		合租：rent
 		 */
 		tabName: {
 			type: String,

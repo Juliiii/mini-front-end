@@ -1,31 +1,21 @@
 <template>
   <div id="app">
-    <tabs :configs="tabsConfigs" />
+    <m-tabs :configs="tabsConfigs" />
     <!-- <message /> -->
     <router-view/>
-    <Dialog 
+    <!-- <m-dialog 
       v-if="dialogStatus"
       @touchend.native = "slide($event)"
-      :on-close="() => dialogStatus = false" />
+      :on-close="() => dialogStatus = false" /> -->
     <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
-import Tabs from '@/components/Tabs';
-import Button from '@/components/Button';
-import Search from '@/components/Search';
-import Dialog from '@/components/Dialog';
 
 
 export default {
   name: 'App',
-  components: {
-    Tabs,
-    Button,
-    Search,
-    Dialog
-  },
   data () {
     return {
       tabsConfigs: [

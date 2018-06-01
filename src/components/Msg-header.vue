@@ -10,7 +10,7 @@
 					<span class="cycle">{{personInfo.cycle}}</span><span class="time">{{personInfo.time}}</span>
 				</div>
 			</div>
-			<div class="head-info" v-if="tabName == 'joint'">
+			<div class="head-info" v-if="tabName == 'rent'">
 				{{personInfo.sex}} &nbsp;{{personInfo.age}}岁
 			</div>
 		</div>
@@ -19,6 +19,7 @@
 
 <script>
 export default {
+	name: 'm-msg-header',
   props: {
 		personInfo: {
 			type: Object,
@@ -36,7 +37,7 @@ export default {
 		},
 		/*
 		评价：comment
-		合租：joint
+		合租：rent
 		 */
 		tabName: {
 			type: String,

@@ -4,27 +4,31 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import axios from './axios';
+import map from 'lodash/map'
 import 'iview/dist/styles/iview.css';
+import components from '@/components'
+
 import {
-  Spin,
-  Scroll,
-  Card,
-  Rate,
-  Radio,
-  Checkbox,
-  Button,
-  Icon,
-  Input,
-  Option,
-  Form,
-  Row,
-  Col,
-  FormItem,
-  Select,
-  CheckboxGroup,
-  RadioGroup,
-  TimePicker,
-  DatePicker
+    Spin,
+    Scroll,
+    Card,
+    Rate,
+    Radio,
+    Checkbox,
+    Button,
+    Icon,
+    Input,
+    Option,
+    Form,
+    Row,
+    Col,
+    FormItem,
+    Select,
+    CheckboxGroup,
+    RadioGroup,
+    TimePicker,
+    DatePicker,
+    Slider
 } from 'iview';
 
 Vue.component('Spin', Spin);
@@ -46,13 +50,17 @@ Vue.component('DatePicker', DatePicker);
 Vue.component('Radio', Radio);
 Vue.component('Rate', Rate);
 Vue.component('Checkbox', Checkbox);
+Vue.component('Slider', Slider);
+
+
+map(components, (cmp, name) => Vue.component(cmp.name, cmp))
 Vue.config.productionTip = false;
 Vue.prototype.axios = axios;
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: { App },
+    template: '<App/>'
 });

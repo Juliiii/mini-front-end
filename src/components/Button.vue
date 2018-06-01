@@ -25,6 +25,7 @@
 // 9 代表 重新认证
 
 export default {
+  name: 'm-button',
   props: {
     type: {
       type: Number,

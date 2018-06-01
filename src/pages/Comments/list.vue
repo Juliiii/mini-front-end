@@ -1,27 +1,24 @@
 <template>
   <Scroll class="comments-list" :height="height">
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
-    <Message class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
 
-    <Message class="list-item" />
+    <m-message :tabName="tabName" class="list-item" />
   </Scroll>
 </template>
 
 <script>
-import Message from '@/components/Message';
 export default {
-  components: {
-    Message
-  },
   data() {
     return {
-      height: 0
+      height: 0,
+      tabName: 'comment'
     }
   },
   mounted() {

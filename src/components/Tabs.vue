@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'm-tabs',
   props: {
     configs: {
       type: Array,
