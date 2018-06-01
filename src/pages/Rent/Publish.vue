@@ -1,5 +1,7 @@
 <template>
 <div class="comments-publish-wrapper">
+  <Scroll class="comments-list">
+
   <div class="form-item">
     <IInput class="form-item" v-model="form.addr" placeholder="公司地址"></IInput>
   </div>
@@ -66,6 +68,8 @@
     <m-button :type="4" class="button-reset" @click="onReset"/>
     <m-button :type="6" class="button-publish" />
   </div>
+  </Scroll>
+
 </div>
 </template>
 
@@ -74,6 +78,7 @@
       data () {
         return {
           isShow: false,
+          height:0,
           goWorkWays: ['走路', '公交', '地铁', '骑车', '小车'],
           form: {
             addr: '',
@@ -123,7 +128,20 @@
           }
         }
       },
+      mounted() {
+        this.onResize();
+        window.addEventListener('resize', this.onResize);
+      },
+      beforeDestroy() {
+        window.removeEventListener('resize', this.onResize);
+      },
       methods: {
+        onResize() {
+          const dom = document.documentElement || document.body;
+          const clientHeight = dom.clientHeight;
+          this.height = clientHeight - 93;
+          console.log(clientHeight, this.height);
+        },
         onDropdownClick() {
           console.log(1);
           this.isShow = true;
@@ -144,96 +162,7 @@
 
 <style lang='scss' scoped>
 @import '../../assets/style/mixin.scss';
+@import '../../assets/style/comments-publish.scss';
 
-.comments-publish-wrapper {
-  height: 100%;
-  padding: 0 10px 5px 10px;
-  .form-item {
-    display: flex;
-    align-items: center;
-    .form-label {
-      text-align: left;
-      font-size: 14px;
-      flex-basis: rem(160);
-    }
-  }
-  .dropdown-wrapper {
-    width: 100%;
-    position: relative;
-    .dropdown-placeholder {
-      color: #bbbec4;
-    }
-    .dropdown-result {
-      width: 100%;
-      height: 32px;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      padding: 4px 7px;
-      border-radius: 4px;
-      border: 1px solid #dddee1;
-    }
 
-    .dropdown-result:hover {
-      border-color: #57a3f3;
-    }
-
-    .list-wrapper {
-      background-color: #fff;
-      z-index: 1;
-      position: absolute;
-      width: 100%;
-      border-radius: 3px;
-      border: 1px solid rgb(238, 238, 238);
-      margin: 5px auto 0 auto;
-      .list-item {
-        text-align: left;
-        padding: 5px 2px;
-      }
-    }
-  }
-
-  .button-group {
-    left: 50%;
-    width: 100%;
-    transform: translateX(-50%);
-    position: fixed;
-    bottom: 5px;
-  }
-
-  .form-item {
-    margin: 8px 0;
-  }
-  .form-item2 {
-    justify-content: space-between;
-    
-  }
-  .form-column {
-    width: rem(330);
-    display: flex;
-    align-items: center;
-    .ivu-select, .ivu-radio-group {
-      flex: 1;
-    }
-    .form-label {
-      flex-basis: rem(160);
-    }
-  }
-  .form-rate-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .three-sele {
-    display: flex;
-    input {
-      width: rem(340);
-    }
-  }
-  .column-price {
-    .form-label{
-      text-align: center;
-    }
-  }
-}
 </style>

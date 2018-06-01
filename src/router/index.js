@@ -8,6 +8,7 @@ import CommentsList from '@/pages/Comments/list';
 import CommentsMap from '@/pages/Comments/echarts';
 import CommentsPublish from '@/pages/Comments/publish';
 
+import RentList from '@/pages/Rent/list';
 import RentPublish from '@/pages/Rent/publish';
 
 import Personal from '@/pages/Personal';
@@ -46,6 +47,9 @@ export default new Router({
             name: 'Rent',
             component: Rent,
             children: [{
+                path: '',
+                component: RentList
+            }, {
                 path: 'publish',
                 component: RentPublish
             }]
