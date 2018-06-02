@@ -20,7 +20,7 @@ export default new Vuex.Store({
       state.address = payload.address;
       state.category = payload.category;
     },
-    updateUid(state) {
+    updateUid(state, payload) {
       state.uid = payload.uid;
     },
     updateComments(state, payload) {

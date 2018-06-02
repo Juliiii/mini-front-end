@@ -49,6 +49,7 @@
 
 <script>
 import api from '@/api';
+import { mapState } from 'vuex'
 
 const keyCnMap = {
   village: '小区名称',
@@ -85,6 +86,9 @@ export default {
         description: ''
       }
     }
+  },
+  computed: {
+    ...mapState(['uid', 'cid'])
   },
   methods: {
     onDropdownClick() {
@@ -123,8 +127,8 @@ export default {
           is_clean: Math.floor(this.form.is_clean),
           has_food: Math.floor(this.form.has_food),
           has_mall: Math.floor(this.form.has_mall),
-          uid: '12323',
-          cid: '2323'
+          uid: this.uid,
+          cid: Number(this.cid)
         });
 
         this.$Message.success({

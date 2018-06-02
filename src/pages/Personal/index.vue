@@ -25,6 +25,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import api from '@/api';
+
 import contactItem from './contactItem';
 import publishItem from './publishItem';
 import messageItem from './messageItem';
@@ -36,8 +39,31 @@ export default {
   },
   data() {
     return {
-      contacts: [1,2,3,4]
+      contacts: [1,2,3,4],
+      user: {}
     };
+  },
+  computed: {
+    ...mapState(['uid'])
+  },
+  created() {
+    
+  },
+  methods: {
+    async getUserInfo() {
+      const res = await api.getUserInfo(this.uid);
+
+      this.user = res.data;
+    },
+    async getContacts() {
+      const res = await api.getContacts({
+        user_id: this.uid,
+        offset: 0,
+        limit: 1000
+      });
+
+      this.contacts = res.data;
+    }
   }
 };
 </script>

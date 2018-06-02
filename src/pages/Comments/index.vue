@@ -15,8 +15,15 @@
 import { mapMutations } from 'vuex';
 import api from '@/api';
 export default {
+  async created() {
+    // 登录后获取openid
+    // const res = await api.getUid();
+    // this.updateUid({uid: res.data.openid});
+
+    this.updateUid({uid: '72371837E55BD13FE2F2A02637CE1901'});
+  },
   methods: {
-    ...mapMutations(['updateComments', 'updateCid']),
+    ...mapMutations(['updateComments', 'updateCid', 'updateUid']),
     async onSelect({
       id: poi,
       title,
@@ -27,8 +34,10 @@ export default {
         poi, title, address, category, offset: 0, limit: 10
       });
 
-      // 评价列表存在vuex
-      this.updateComments({comments: res.data, clear: true});
+      console.log
+
+      // // 评价列表存在vuex
+      // this.updateComments({comments: res.data, clear: true});
       this.updateCid({
         cid: poi,
         title,

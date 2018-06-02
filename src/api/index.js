@@ -84,23 +84,111 @@ class Api {
     has_mall,
     description
   }) {
-    const url = `${this.baseUrl}/companys/comment`;
+    const url = `${this.baseUrl}/comment`;
 
     const res = await axios.post(url, {
-      uid,
-      cid,
-      village,
-      how_go,
-      how_long,
-      is_clean,
-      has_food,
-      has_mall,
-      description
+      operation: 1,
+      data: {
+        uid,
+        cid,
+        village,
+        how_go,
+        how_long,
+        is_clean,
+        has_food,
+        has_mall,
+        description
+      }
     });
 
     return res;
   }
 
+  /**
+   * 获取当前用户信息
+   * 
+   * @param {any} user_id 
+   * @returns 
+   * @memberof Api
+   */
+  async getUserInfo(user_id) {
+    const url = `${this.baseUrl}/user/${user_id}}`;
+
+    const res = await axios.get(url);
+
+    return res.data;
+  }
+
+  /**
+   * 获取合租请求列表
+   * 
+   * @param {any} {
+   *     user_id,
+   *     offset,
+   *     limit
+   *   } 
+   * @returns 
+   * @memberof Api
+   */
+  async getContactReqs({
+    user_id,
+    offset,
+    limit
+  }) {
+    const params = qs.stringify({
+      user_id,
+      offset,
+      limit
+    });
+
+    const url = `${this.baseUrl}/contacts?${params}`;
+
+    const res = await axios.get(url);
+
+    return res.data;
+  }
+
+  /**
+   * 同意或拒绝合租
+   *
+   * @param {any} {
+   *       contact_id
+   *     } 
+   * @param {any} {
+   *       accept_status
+   *     } 
+   * @memberof Api
+   */
+  async resContactReq(
+    {
+      contact_id
+    },
+    {
+      accept_status
+    }) {
+    const url = `${this.baseUrl}/contact/${contact_id}`;
+
+    const body = {
+      operation: 2,
+      accept_status
+    };
+
+    await axios.post(url, body);
+  }
+
+  /**
+   * 获取uid
+   * 
+   * @returns 
+   * @memberof Api
+   */
+  async getUid() {
+    const url = `${this.baseUrl}/user/info`;
+
+    const res = await axios.get(url);
+
+    return res.data;
+  }
 }
 
 export default new Api();
