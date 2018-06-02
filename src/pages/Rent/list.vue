@@ -1,6 +1,6 @@
 <template>
 <div>
-  <m-search />
+  <!-- <m-search /> -->
   
   <Scroll class="comments-list" :height="height">
     <m-message :tabName="tabName" class="list-item" @click.native="onClick()"/>
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/style/comments-list.scss';
+@import "../../assets/style/comments-list.scss";
 
 .comments-list {
   width: 100%;
@@ -78,7 +78,10 @@ export default {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: linear-gradient(RGBA(255,255,255,.75), RGBA(255,255,255,1));
+  background: linear-gradient(
+    RGBA(255, 255, 255, 0.75),
+    RGBA(255, 255, 255, 1)
+  );
   justify-content: center;
 }
 </style>

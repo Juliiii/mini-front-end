@@ -19,18 +19,20 @@
 
 
   <publish-item />
-
-  <contact-item v-for="contact in contacts" :key="contact" />
+  <contact-item />
+  <message-item v-for="contact in contacts" :key="contact" />
 </div>
 </template>
 
 <script>
 import contactItem from './contactItem';
 import publishItem from './publishItem';
+import messageItem from './messageItem';
 export default {
   components: {
     publishItem,
-    contactItem
+    contactItem,
+    messageItem
   },
   data() {
     return {

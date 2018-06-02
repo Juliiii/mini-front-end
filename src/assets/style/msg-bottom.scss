@@ -20,4 +20,12 @@
             text-align: left;
         }
     }
+    .m-bottom-message {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .m-buttom-button-group {
+            text-align: right;
+        }
+    }
 }
