@@ -1,20 +1,22 @@
 import axios from '../axios';
 import qs from 'querystring';
+import store from '../store';
 
 class Api {
   constructor() {
-    this.baseUrl = 'https://www.ultrasoftware.cn';
+    this.baseUrl = 'http://jushuo.anycodes.cn';
   }
 
   /**
    * 搜索公司名，获取匹配公司位置列表
-   * 
-   * @param {any} company_name 
+   *
+   * @param {any} company_name
    * @memberof Api
    */
-  async getAddressList(company_name) {
+  async getAddressList (company_name) {
     const params = qs.stringify({
-      company_name
+      company_name,
+      openid: store.state.uid
     });
 
     const url = `${this.baseUrl}/companys/search-by-name?${params}`;
@@ -26,31 +28,20 @@ class Api {
 
   /**
    * 点击公司位置，获取房源评论列表
-   * 
+   *
    * @param {any} {
-   *     company_id,
-   *     offset,
-   *     limit
-   *   } 
    * @memberof Api
    */
-  async getComments({
+  async getComments ({
     poi,
-    title,
-    address,
-    category,
-    offset,
-    limit
+    page
   }) {
     const params = qs.stringify({
       poi,
-      title,
-      address,
-      category,
-      offset,
-      limit
+      page,
+      openid: store.state.uid
     });
-    const url = `${this.baseUrl}/comments/search-by-poi?${params}`;
+    const url = `${this.baseUrl}/companys/search-by-poi?${params}`;
 
     const res = await axios.get(url);
 
@@ -73,7 +64,7 @@ class Api {
    *   } 
    * @memberof Api
    */
-  async publishComments({
+  async publishComments ({
     uid,
     cid,
     village,
@@ -111,7 +102,7 @@ class Api {
    * @returns 
    * @memberof Api
    */
-  async getUserInfo(user_id) {
+  async getUserInfo (user_id) {
     const url = `${this.baseUrl}/user/${user_id}}`;
 
     const res = await axios.get(url);
@@ -126,11 +117,11 @@ class Api {
    *     user_id,
    *     offset,
    *     limit
-   *   } 
-   * @returns 
+   *   }
+   * @returns
    * @memberof Api
    */
-  async getContactReqs({
+  async getContactReqs ({
     user_id,
     offset,
     limit
@@ -153,13 +144,13 @@ class Api {
    *
    * @param {any} {
    *       contact_id
-   *     } 
+   *     }
    * @param {any} {
    *       accept_status
-   *     } 
+   *     }
    * @memberof Api
    */
-  async resContactReq(
+  async resContactReq (
     {
       contact_id
     },
@@ -178,11 +169,11 @@ class Api {
 
   /**
    * 获取uid
-   * 
-   * @returns 
+   *
+   * @returns
    * @memberof Api
    */
-  async getUid() {
+  async getUid () {
     const url = `${this.baseUrl}/user/info`;
 
     const res = await axios.get(url);

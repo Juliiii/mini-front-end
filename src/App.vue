@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <m-tabs :configs="tabsConfigs" />
+    <m-tabs :configs="tabsConfigs"  v-if="path !== '/'" />
     <router-view/>
   </div>
 </template>
@@ -17,8 +17,17 @@ export default {
         { text: '我要合租', link: '/rent' },
         { text: '个人中心', link: '/personal' }
       ],
-      dialogStatus: true
+      dialogStatus: true,
+      path: '/'
     };
+  },
+  created () {
+    this.path = this.$route.fullPath;
+  },
+  watch: {
+    '$route.fullPath'(val) {
+      this.path = val;
+    }
   }
 };
 </script>

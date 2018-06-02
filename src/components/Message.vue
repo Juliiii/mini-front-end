@@ -40,10 +40,13 @@ export default {
 			type: String,
       required: true,
       default: () => ''
+		},
+		item: {
+			type: Object,
+			required: true,
+			default: () => ({
+			})
 		}
-	},
-	mounted() {
-		console.log(this.tabName);
 	}
 }
 </script>

@@ -1,18 +1,17 @@
 <template>
   <Scroll class="comments-list" :height="height" @on-reach-bottom="onReachBottom">
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-    <m-message :tabName="tabName" class="list-item" />
-
-    <m-message :tabName="tabName" class="list-item" />
-
-
-    <m-message v-for="comment in comments" :tabName="tabName" class="list-item" :key="comment.id" />
+    <!-- <m-message :tabName="tabName" class="list-item" /> -->
+    <m-message
+      v-if="comments.length !== 0"
+      v-for="comment in comments"
+      :tabName="tabName"
+      class="list-item"
+      :item="comment"
+      :key="comment.uid" />
+    <div v-if="comments.length === 0 && cid">
+      暂时没有人来评价, 要不你来评价一下？
+      <m-button @click="$router.push('/comments/publish')" :type="3" style="margin: 5px auto 0 auto;"/>
+    </div>
   </Scroll>
 </template>
 
@@ -24,14 +23,13 @@ export default {
     return {
       height: 0,
       tabName: 'comment',
-      page: 0,
-      limit: 10,
+      page: 1,
       loading: false,
       reachEnd: false
     }
   },
   computed: {
-    ...mapState(['title', 'address', 'id', 'category', 'comments'])
+    ...mapState(['cid', 'comments'])
   },
   mounted() {
     this.onResize();
@@ -52,19 +50,15 @@ export default {
       try {
         this.loading = true;
         const params = {
-          poi: this.id,
-          title: this.title,
-          category: this.category,
-          address: this.address,
-          offset: (this.page + 1) * this.limit,
-          limit
+          poi: this.cid,
+          page: this.page + 1
         };
 
         const res = await api.getComments(params);
-        if (res.data.length === 0) {
+        if (res.length === 0) {
           this.reachEnd = true;
         }
-        this.updateComments({comments: res.data});
+        this.updateComments({comments: res});
         this.page++;
       } catch (err) {
       } finally {

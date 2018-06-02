@@ -16,9 +16,6 @@ export default new Vuex.Store({
   mutations: {
     updateCid(state, payload) {
       state.cid = payload.cid;
-      state.title = payload.title;
-      state.address = payload.address;
-      state.category = payload.category;
     },
     updateUid(state, payload) {
       state.uid = payload.uid;

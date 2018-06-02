@@ -20,30 +20,20 @@ export default {
     // const res = await api.getUid();
     // this.updateUid({uid: res.data.openid});
 
-    this.updateUid({uid: '72371837E55BD13FE2F2A02637CE1901'});
+    console.log(this.$route.query.openid);
+    // this.updateUid({uid: this.$route.query.openid})
+    this.updateUid({uid: 'ADCDB1ECC58BD09293234DC60456CC7B'});
   },
   methods: {
     ...mapMutations(['updateComments', 'updateCid', 'updateUid']),
     async onSelect({
-      id: poi,
-      title,
-      address,
-      category
+      id: poi
     }) {
-      const res = await api.getComments({
-        poi, title, address, category, offset: 0, limit: 10
-      });
-
-      console.log
+      const res = await api.getComments({poi, page: 1});
 
       // // 评价列表存在vuex
-      // this.updateComments({comments: res.data, clear: true});
-      this.updateCid({
-        cid: poi,
-        title,
-        address,
-        category
-      });
+      this.updateComments({comments: res, clear: true});
+      this.updateCid({cid: poi});
 
       // 这里可能是别的页面搜索，所以调回列表页
       this.$router.push('/comments');
