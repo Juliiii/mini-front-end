@@ -3,7 +3,7 @@ import qs from 'querystring';
 
 class Api {
   constructor() {
-    this.baseUrl = '';
+    this.baseUrl = 'https://www.ultrasoftware.cn';
   }
 
   /**
@@ -13,15 +13,15 @@ class Api {
    * @memberof Api
    */
   async getAddressList(company_name) {
-    const params = qs.querystring({
+    const params = qs.stringify({
       company_name
     });
 
-    const url = `${this.baseUrl}/search-by-name?${params}`;
+    const url = `${this.baseUrl}/companys/search-by-name?${params}`;
 
     const res = await axios.get(url);
 
-    return res;
+    return res.data;
   }
 
   /**
@@ -35,21 +35,26 @@ class Api {
    * @memberof Api
    */
   async getComments({
-    company_id,
+    poi,
+    title,
+    address,
+    category,
     offset,
     limit
   }) {
-    const params = qs.querystring({
-      company_id,
+    const params = qs.stringify({
+      poi,
+      title,
+      address,
+      category,
       offset,
       limit
     });
-
-    const url = `${this.baseUrl}/search-by-company-id?${params}`;
+    const url = `${this.baseUrl}/comments/search-by-poi?${params}`;
 
     const res = await axios.get(url);
 
-    return res;
+    return res.data;
   }
 
   /**
@@ -79,7 +84,7 @@ class Api {
     has_mall,
     description
   }) {
-    const url = `${this.baseUrl}/comment`;
+    const url = `${this.baseUrl}/companys/comment`;
 
     const res = await axios.post(url, {
       uid,

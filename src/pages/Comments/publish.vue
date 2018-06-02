@@ -38,40 +38,47 @@
   </div>
   <div class="button-group">
     <m-button :type="4" class="button-reset" @click="onReset"/>
-    <m-button :type="5" class="button-publish" />
+    <m-button :type="5" class="button-publish" @click="onPublish"/>
   </div>
 </div>
 </template>
 
 <script>
+    import api from '@/api';
     export default {
       data () {
         return {
           isShow: false,
           goWorkWays: ['走路', '公交', '地铁', '骑车', '小车'],
           form: {
-            name: '',
-            way: '',
-            time: '',
-            desc: ''
+            uid: '',
+            cid: '',
+            village: '',
+            how_go: '',
+            how_long: '',
+            is_clean: '',
+            has_food: '',
+            has_mall: '',
+            description: ''
           },
           valueCustomText: 3
         }
       },
       methods: {
         onDropdownClick() {
-          console.log(1);
           this.isShow = true;
-          console.log(this.isShow);
         },
         onSelect(item) {
-          this.form.way = item;
+          this.form.how_go = item;
           this.isShow = false;
         },
         onReset() {
           for (const key of Object.keys(this.form)) {
             this.form[key] = '';
           }
+        },
+        onPublish() {
+
         }
       }
     }

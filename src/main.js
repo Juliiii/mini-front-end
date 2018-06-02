@@ -29,9 +29,11 @@ import {
     RadioGroup,
     TimePicker,
     DatePicker,
-    Upload
+    Upload,
+    Message,
 } from 'iview';
 
+Vue.prototype.$Message = Message;
 Vue.component('Upload', Upload);
 Vue.component('Avatar', Avatar);
 Vue.component('Spin', Spin);

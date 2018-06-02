@@ -1,6 +1,6 @@
 <template>
 <div class="comments-wrapper">
-  <m-search />
+  <m-search  @select="onSelect" />
   <div class="button-group">
     <m-button :type="1" @click="$router.push('/comments')"/>
     <m-button :type="2" @click="$router.push('/comments/map')"/>
@@ -12,7 +12,20 @@
 </template>
 
 <script>
+import api from '@/api';
 export default {
+  methods: {
+    async onSelect({
+      id: poi,
+      title,
+      address,
+      category
+    }) {
+      const res = await api.getComments({
+        poi, title, address, category, offset: 0, limit: 10
+      });
+    }
+  }
 }
 </script>
 
