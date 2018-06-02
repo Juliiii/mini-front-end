@@ -3,7 +3,7 @@
   <div class="edit-avatar">
     <img class="personal-avatar" src="../../assets/img/11.jpg" alt="">
     <div class="button-reauth-wrapper">
-      <Button :type="9" />
+      <m-button :type="9" @click="$router.push('/auth')" />
     </div>
   </div>
   <div class="comments-publish-wrapper personal-edit-wrapper">

@@ -1,0 +1,12 @@
+.auth-wrapper {
+  .auth-upload {
+    margin: 30px 0;
+  }
+
+  .auth-publish-button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -28,9 +28,11 @@ import {
     CheckboxGroup,
     RadioGroup,
     TimePicker,
-    DatePicker
+    DatePicker,
+    Upload
 } from 'iview';
 
+Vue.component('Upload', Upload);
 Vue.component('Avatar', Avatar);
 Vue.component('Spin', Spin);
 Vue.component('Scroll', Scroll);

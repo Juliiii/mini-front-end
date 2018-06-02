@@ -30,9 +30,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/style/mixin.scss';
+@import "../../assets/style/mixin.scss";
 div.search-wrapper {
   padding-bottom: 0;
 }
-
 </style>

@@ -95,6 +95,8 @@ class Api {
 
     return res;
   }
+
+
 }
 
 export default new Api();
