@@ -1,0 +1,24 @@
+.edit-wrapper {
+  padding: 8px 0;
+  .edit-avatar {
+    position: relative;
+    .personal-avatar {
+      width: rem(100);
+      height: rem(100);
+      margin-right: rem(30);
+      border-radius: 100%;
+      margin: 0 auto;  
+    }
+
+    .button-reauth-wrapper {
+      position: absolute;
+      top: 50%;
+      margin-top: -16px;
+      right: 25px;
+    }
+  }
+
+  .personal-edit-wrapper {
+    padding-top: 10px;
+  }
+}

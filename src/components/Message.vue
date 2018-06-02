@@ -1,28 +1,22 @@
 
 <template>
 <div class="message-wrapper" id="message">
-	<Msgheader :personInfo="personInfo" :tabName="tabName"/>
+	<m-msg-header :personInfo="personInfo" :tabName="tabName"/>
 	
 	<div class="content">
 		<p>{{content}}</p>
 	</div>
 
-	<Msgbottom :tabName="tabName" :tags="tags" :commuNum="commuNum"/>
+	<m-msg-bottom :tabName="tabName" :tags="tags" :commuNum="commuNum"/>
 </div>
 </template>
 
 <script>
-import Msgheader from '@/components/msg-header';
-import Msgbottom from '@/components/msg-bottom';
 
 export default {
-	components: {
-		Msgheader,
-		Msgbottom
-  },
+	name: 'm-message',
   data () {
     return {
-			tabName: 'joint',
 			personInfo: {
 				sex: '女',
 				age: 18,
@@ -31,16 +25,26 @@ export default {
 				time: '10分钟'
 			},
 			tags:[
-				'干净',
-				'干净',
-				'干净',
-				'干净',
-				'干净'
+				'干净1',
+				'干净2',
+				'干净3',
+				'干净4',
+				'干净5'
 			],
 			commuNum: 10,
 			content:'fdsfdsfdsfdssssssssssssssssssssssssssssssssssssssssssssssssssfdsf'
     };
-  }
+	},
+	props: {
+		tabName: {
+			type: String,
+      required: true,
+      default: () => ''
+		}
+	},
+	mounted() {
+		console.log(this.tabName);
+	}
 }
 </script>
 <style lang="scss">

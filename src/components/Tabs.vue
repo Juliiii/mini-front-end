@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: 'm-tabs',
   props: {
     configs: {
       type: Array,
@@ -51,6 +52,7 @@ export default {
       const dom = document.querySelectorAll('#tabs .tabs-item')[index];
       this.transformXOffset = dom.getBoundingClientRect().left;
       this.activeTab = config.text;
+      this.$router.push(config.link);
     },
     onResize () {
       const dom = document.querySelectorAll('#tabs .tabs-item')[0];
