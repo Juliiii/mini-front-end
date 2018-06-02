@@ -1,7 +1,31 @@
 .comments-list {
-  width: 100%;
-  .list-item {
-    width: 90%;
-    margin: 30px auto 10px auto;
-  }
+    width: 100%;
+    .list-item {
+        width: 90%;
+        margin: 30px auto 10px auto;
+    }
+}
+
+.rent-list {
+    width: 100%;
+    .list-item {
+        width: 90%;
+        margin: 10 auto 30px auto;
+    }
+}
+
+.btn-publish {
+    height: rem(100);
+    transition: all 1s;
+    padding-top: rem(20);
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient( RGBA(255, 255, 255, 0.75), RGBA(255, 255, 255, 1));
+    justify-content: center;
+}
+
+.btn_hide {
+    height: 0!important;
 }

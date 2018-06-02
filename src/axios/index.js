@@ -1,7 +1,7 @@
 import axios from 'axios';
 // axios 配置
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL = '';
+axios.defaults.baseURL = 'https://www.ultrasoftware.cn';
 
 // // http request 拦截器
 // axios.interceptors.request.use(

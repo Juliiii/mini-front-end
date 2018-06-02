@@ -3,8 +3,11 @@
   <Scroll class="comments-list"  :height="height">
 
   <div class="form-item">
-    <IInput class="form-item" v-model="form.addr" placeholder="公司地址"></IInput>
+    <!-- <IInput class="form-item" v-model="form.addr" placeholder="公司地址"></IInput> -->
+    
+    
   </div>
+  <m-search />
   <div class="form-item">
     <div class="form-column">
       <IInput class="form-item" v-model="form.name" placeholder="姓名"></IInput>
@@ -64,7 +67,7 @@
 
   <div class="button-group">
     <m-button :type="4" class="button-reset" @click="onReset"/>
-    <m-button :type="6" class="button-publish" />
+    <m-button :type="6" class="button-publish" @click="onPublish" />
   </div>
   </Scroll>
 
@@ -72,6 +75,8 @@
 </template>
 
 <script>
+import axios from '@/axios'
+
     export default {
       data () {
         return {
@@ -153,6 +158,25 @@
           for (const key of Object.keys(this.form)) {
             this.form[key] = '';
           }
+        },
+        onPublish() {
+          axios.post('/join_rents/6',{
+            "operation": 1,
+            "price_low":100,
+            "price_high":1000,
+            "is_clean":3,
+            "adopt_pet":1,
+            "sleep_time":11,
+            "hobby":"MEIYOU",
+            "description":"ASDKAJDKKS",
+            "cid":3
+          })
+          .then(function(res){
+            console.log(res);
+          })
+          .catch(function(err){
+            console.log(err);
+          });
         }
       }
     }
@@ -161,6 +185,8 @@
 <style lang='scss' scoped>
 @import '../../assets/style/mixin.scss';
 @import '../../assets/style/comments-publish.scss';
-
+.search-wrapper .search-input {
+        width: 100%!important;
+    }
 
 </style>

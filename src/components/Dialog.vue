@@ -1,5 +1,5 @@
 <template>
-  <div class="dialog-wrapper" @click="onClose && onClose()">
+  <div class="dialog-wrapper m-dialog" @click="onClose && onClose()">
     <div class="box">
       <div class="dialog" @click.stop="() => {}">
         <m-message :tabName="tabName"/>

@@ -1,6 +1,6 @@
 <template>
   <Scroll class="comments-list" :height="height">
-    <m-message :tabName="tabName" class="list-item" />
+<!--     <m-message :tabName="tabName" class="list-item" />
     <m-message :tabName="tabName" class="list-item" />
     <m-message :tabName="tabName" class="list-item" />
     <m-message :tabName="tabName" class="list-item" />
@@ -10,7 +10,7 @@
     <m-message :tabName="tabName" class="list-item" />
 
     <m-message :tabName="tabName" class="list-item" />
-  </Scroll>
+ -->  </Scroll>
 </template>
 
 <script>

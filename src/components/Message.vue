@@ -18,11 +18,11 @@ export default {
   data () {
     return {
 			personInfo: {
-				sex: '女',
-				age: 18,
-				addr: '帝景园',
-				cycle: '走路',
-				time: '10分钟'
+				sex: this.personInfo.sex || '',
+				age: this.personInfo.age || '',
+				addr: this.personInfo.village || '',
+				cycle: this.personInfo.how_go || '',
+				time: this.personInfo.how_long || ''
 			},
 			tags:[
 				'干净1',
@@ -32,7 +32,7 @@ export default {
 				'干净5'
 			],
 			commuNum: 10,
-			content:'fdsfdsfdsfdssssssssssssssssssssssssssssssssssssssssssssssssssfdsf'
+			content: this.personInfo.discription || ''
     };
 	},
 	props: {
@@ -40,6 +40,11 @@ export default {
 			type: String,
       required: true,
       default: () => ''
+		},
+		personInfo: {
+			type: Object,
+      required: true,
+      default: () => {}
 		}
 	},
 	mounted() {
