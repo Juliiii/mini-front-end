@@ -6,7 +6,8 @@ import router from './router';
 import axios from './axios';
 import map from 'lodash/map'
 import 'iview/dist/styles/iview.css';
-import components from '@/components'
+import components from '@/components';
+import store from '@/store';
 
 import {
     Avatar,
@@ -65,6 +66,7 @@ Vue.prototype.axios = axios;
 new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App/>'
 });

@@ -1,13 +1,7 @@
 <template>
   <div id="app">
     <m-tabs :configs="tabsConfigs" />
-    <!-- <message /> -->
     <router-view/>
-    <!-- <m-dialog 
-      v-if="dialogStatus"
-      @touchend.native = "slide($event)"
-      :on-close="() => dialogStatus = false" /> -->
-    <!-- <router-view/> -->
   </div>
 </template>
 
@@ -25,14 +19,7 @@ export default {
       ],
       dialogStatus: true
     };
-  },
-  methods: {
-    slide(e) {
-      e.stopPropagation()
-      //e.preventDefault()
-    }
   }
-  
 };
 </script>
 
