@@ -1,6 +1,6 @@
 <template>
-<div class="comments-publish-wrapper">
-  <Scroll class="comments-list">
+<div class="comments-publish-wrapper rent-publish-wrapper">
+  <Scroll class="comments-list"  :height="height">
 
   <div class="form-item">
     <IInput class="form-item" v-model="form.addr" placeholder="公司地址"></IInput>
@@ -47,9 +47,7 @@
   </div>
   <div class="form-item">
     <span class="form-label">洁净程度</span>
-    <Rate show-text allow-half v-model="form.cleanValue">
-        <span style="color: #f5a623">{{ form.cleanValue }}</span>
-    </Rate>
+    <Rate show-text allow-half v-model="cleanValue"></Rate>
   </div>
   <div class="form-item">
     <span class="form-label">心理价位</span>
@@ -121,11 +119,11 @@
             
             staylateModel: '',
             price: '',
-            cleanStar: 3,
-            cleanValue: 3.8,
+            
             
             addInfo: ''
-          }
+          },
+          cleanValue: 3
         }
       },
       mounted() {
