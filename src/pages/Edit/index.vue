@@ -14,19 +14,6 @@
     <div class="form-item">
       <span class="form-label">公司</span>
       <IInput class="form-item" v-model="form.work" placeholder="例如：腾讯科技有限公司"></IInput>
-      <!-- <div class="dropdown-wrapper">
-        <div class="dropdown-result" @click="onDropdownClick">
-          <span class="dropdown-placeholder" v-show="form.way === ''" >例如：骑车</span>
-          {{form.way}}
-        </div>
-        <div
-          v-show="isShow"
-          class="list-wrapper">
-          <div v-for="item in goWorkWays" :key="item" @click="onSelect(item)">
-            <div class="list-item">{{item}}</div>
-          </div>
-        </div>
-      </div> -->
     </div>
     <div class="form-item">
       <span class="form-label">年龄</span>
@@ -76,19 +63,15 @@
       </RadioGroup>
     </div>
     <div class="button-group">
-      <Button :type="4" class="button-reset" @click="onReset"/>
-      <Button :type="7" class="button-publish" />
+      <m-button :type="4" class="button-reset" @click="onReset"/>
+      <m-button :type="7" class="button-publish" />
     </div>
   </div>
 </div>
 </template>
 
 <script>
-import Button from '@/components/Button';
 export default {
-  components: {
-    Button
-  },
   data() {
     return {
       form: {
@@ -106,8 +89,7 @@ export default {
 </script>
 
 <style lang='scss'>
-@import '../../assets/style/comments-publish.scss';
-@import '../../assets/style/mixin.scss';
-@import '../../assets/style/edit.scss';
-
+@import "../../assets/style/comments-publish.scss";
+@import "../../assets/style/mixin.scss";
+@import "../../assets/style/edit.scss";
 </style>

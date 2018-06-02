@@ -7,7 +7,7 @@
     <div class="personal-info-wrapper">
       <div class="personal-info-item">
         <span class="personal-info-name">刘居说 (已认证) <span class="personal-info-spec" style="margin-left: 5px;"> 男 24岁</span></span>
-        <Button :type="8" class="button-edit" @click="$router.push('/edit')"/>
+        <m-button :type="8" class="button-edit" @click="$router.push('/edit')"/>
       </div>
       <div class="personal-info-spec personal-info-item">liujushuo@email.com</div>
       <div class="personal-info-spec personal-info-item">13719177292</div>
@@ -20,30 +20,28 @@
 
   <publish-item />
 
-  <contact-item v-for="contact in contacts" key="contact" />
+  <contact-item v-for="contact in contacts" :key="contact" />
 </div>
 </template>
 
 <script>
 import contactItem from './contactItem';
 import publishItem from './publishItem';
-import Button from '@/components/Button';
 export default {
   components: {
-    Button,
     publishItem,
     contactItem
   },
   data() {
     return {
-      contacts: [1,1,1,1]
+      contacts: [1,2,3,4]
     };
   }
 };
 </script>
 
 <style lang="scss">
-@import '../../assets/style/mixin.scss';
+@import "../../assets/style/mixin.scss";
 .personal-wrapper {
   padding: 3px;
 
@@ -63,7 +61,7 @@ export default {
         width: rem(100);
         height: rem(100);
         margin-right: rem(30);
-        border-radius: 100%;      
+        border-radius: 100%;
       }
     }
     .personal-info-wrapper {

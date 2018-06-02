@@ -5,16 +5,12 @@
     <div class="publish-item-content">这个小区还不错，很多人住在这里。也许是不错的吧</div>
     <div class="publish-item-traffic">骑车<span>30分钟</span></div>
   </div>
-  <Msgbottom tabName="comment" :tags="tags" class="publish-item-msg-button"/>
+  <m-msg-bottom tabName="comment" :commuNum="1" :tags="tags" class="publish-item-msg-button"/>
 </div>
 </template>
 
 <script>
-import Msgbottom from '@/components/msg-bottom';
 export default {
-  components: {
-    Msgbottom
-  },
   data() {
     return {
       tags: ['小区干净', '吃的很多']
@@ -24,5 +20,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/style/publish-item.scss';
+@import "../../assets/style/publish-item.scss";
 </style>
