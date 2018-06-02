@@ -19,6 +19,24 @@
 				<span>#{{tag}} &nbsp;</span>
 			</div>
 		</div>
+
+		<div v-if="tabName == 'message'" class="m-bottom-message">
+			<span class="commu-num">
+				{{date}}
+			</span>
+			<div class="m-buttom-button-group">
+				<template v-if="status === 0">
+					<IButton type="text">保持联系</IButton>
+					<IButton type="text">拒绝联系</IButton>
+				</template>
+				<template v-else-if="status === 1">
+					<IButton type="text" disabled>已联系</IButton>
+				</template>
+				<template v-else>
+					<IButton type="text" disabled>已拒绝</IButton>
+				</template>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -56,6 +74,12 @@ export default {
 				}
 				
 			}
+		},
+		status: {
+			type: Number
+		},
+		date: {
+			type: String
 		}
   },
   data () {
@@ -74,5 +98,5 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '../assets/style/msg-bottom.scss';
+@import "../assets/style/msg-bottom.scss";
 </style>

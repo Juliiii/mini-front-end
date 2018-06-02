@@ -2,16 +2,12 @@
 <div class="contact-item-wrapper">
   <div class="contact-item-has-contact">已联系</div>
   <div class="contact-item-content">这个小区还不错，很多人住在这里。也许是不错的吧</div>
-  <Msgbottom tabName="joint" :commuNum="4" :tags="tags"  class="contact-item-msg-button"/>
+  <m-msg-bottom tabName="rent" :commuNum="4" :tags="tags"  class="contact-item-msg-button"/>
 </div>
 </template>
 
 <script>
-import Msgbottom from '@/components/msg-bottom';
 export default {
-  components: {
-    Msgbottom
-  },
   data() {
     return {
       tags: ['小区干净', '吃的很多']
