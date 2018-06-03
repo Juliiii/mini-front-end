@@ -1,7 +1,7 @@
 <template>
 <div class="edit-wrapper">
   <div class="edit-avatar">
-    <img class="personal-avatar" src="../../assets/img/11.jpg" alt="">
+    <img class="personal-avatar" :src="avatar" alt="">
     <div class="button-reauth-wrapper">
       <m-button :type="9" @click="$router.push('/auth')" />
     </div>
@@ -82,6 +82,11 @@ export default {
   },
   async created() {
     await this.getUserInfo();
+  },
+  computed: {
+		avatar() {
+			return this.user.photo ? this.user.photo : 'https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png';
+		}
   },
   methods: {
     async getUserInfo() {
