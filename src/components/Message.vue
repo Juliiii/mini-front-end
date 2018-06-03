@@ -1,13 +1,13 @@
 
 <template>
 <div class="message-wrapper" id="message">
-	<m-msg-header :personInfo="personInfo" :tabName="tabName"/>
+	<m-msg-header :personInfo="item" :tabName="tabName"/>
 	
 	<div class="content">
-		<p>{{content}}</p>
+		<p>{{item.description}}</p>
 	</div>
 
-	<m-msg-bottom :tabName="tabName" :tags="tags" :commuNum="commuNum"/>
+	<m-msg-bottom :tabName="tabName" :tags="item.tags" :commuNum="commuNum"/>
 </div>
 </template>
 
@@ -17,22 +17,22 @@ export default {
 	name: 'm-message',
   data () {
     return {
-			personInfo: {
-				sex: '女',
-				age: 18,
-				addr: '帝景园',
-				cycle: '走路',
-				time: '10分钟'
-			},
-			tags:[
-				'干净1',
-				'干净2',
-				'干净3',
-				'干净4',
-				'干净5'
-			],
-			commuNum: 10,
-			content:'fdsfdsfdsfdssssssssssssssssssssssssssssssssssssssssssssssssssfdsf'
+			// personInfo: {
+			// 	sex: '女',
+			// 	age: 18,
+			// 	addr: '帝景园',
+			// 	cycle: '走路',
+			// 	time: '10分钟'
+			// },
+			// tags:[
+			// 	'干净1',
+			// 	'干净2',
+			// 	'干净3',
+			// 	'干净4',
+			// 	'干净5'
+			// ],
+			// commuNum: 10,
+			// content:'fdsfdsfdsfdssssssssssssssssssssssssssssssssssssssssssssssssssfdsf'
     };
 	},
 	props: {

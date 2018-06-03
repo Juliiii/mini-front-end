@@ -22,7 +22,7 @@ axios.interceptors.response.use(
   response => {
     if (typeof response.data === 'string') {
       if (response.data == "{'state':'nologin'}") {
-        window.location.href = '/';
+        window.location.href = '/login';
         Message.error({
           content: '请先登录'
         });
@@ -31,7 +31,7 @@ axios.interceptors.response.use(
     return response;
   },
   error => {
-    return response;
+    return error;
   });
 
 export default axios;

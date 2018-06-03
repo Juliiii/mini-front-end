@@ -2,7 +2,7 @@
 <div class="homepage-wrapper">
   <H2>居说</H2>
   <p>一款为实习生、毕业生提供</p>
-  <p>以公司为中心真实客观的房源评价软件</p>
+  <p style="width: 300px" >以公司为中心真实客观的房源评价软件</p>
 
   <div @click="onClick">
     <img src="../../assets/img/qq.png" alt="" class="logo">

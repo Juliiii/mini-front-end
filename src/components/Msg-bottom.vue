@@ -1,11 +1,11 @@
 <template>
 	<div class="m-bottom-wrapper">
 		<div v-if="tabName == 'comment'" class="icon-wrapper-com">
-			<div class="icon">
+			<!-- <div class="icon">
 				<Icon :type="tIconType" color="#FFC100" size="60px"></Icon>
 				{{moodInfo.thumbNum}}
 				<Icon :type="mIconType"></Icon>{{moodInfo.moodNum}}
-			</div>
+			</div> -->
 			<div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
 			</div>

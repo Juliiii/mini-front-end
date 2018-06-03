@@ -75,24 +75,39 @@ class Api {
     has_mall,
     description
   }) {
-    const url = `${this.baseUrl}/comment`;
-
-    const res = await axios.post(url, {
-      operation: 1,
-      data: {
-        uid,
-        cid,
-        village,
-        how_go,
-        how_long,
-        is_clean,
-        has_food,
-        has_mall,
-        description
-      }
+    const params = qs.stringify({
+      openid: store.state.uid,
+      cid,
+      village,
+      how_go,
+      how_long,
+      is_clean,
+      has_food,
+      has_mall,
+      description
     });
+    const url = `${this.baseUrl}/comment?${params}`;
+    const res = await axios.get(url);
 
     return res;
+  }
+
+  /**
+   * 数据总览
+   *
+   * @memberof Api
+   */
+  async getMainData({cid}) {
+    const params = qs.stringify({
+      cid,
+      openid: store.state.uid
+    });
+
+    const url = `${this.baseUrl}/maindata?${params}`;
+
+    const res = await axios.get(url);
+
+    console.log(res);
   }
 
   /**

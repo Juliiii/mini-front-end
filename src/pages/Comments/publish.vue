@@ -22,7 +22,7 @@
   </div>
   <div class="form-item">
     <span class="form-label">上班耗时</span>
-    <IInput class="form-item" v-model="form.how_long" placeholder="例如: 30分钟"></IInput>
+    <IInput class="form-item" v-model="form.how_long" placeholder="单位分钟，例如: 30"></IInput>
   </div>
   <div class="form-item">
     <span class="form-label">干净程度</span>
@@ -49,7 +49,7 @@
 
 <script>
 import api from '@/api';
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 const keyCnMap = {
   village: '小区名称',
@@ -87,10 +87,22 @@ export default {
       }
     }
   },
+  created() {
+    if (!this.uid) {
+      this.$router.push('/');
+    }
+    if (!this.cid) {
+      this.$Message.error({
+        content: '选择一个地址再评价'
+      });
+      this.$router.push('/comments');
+    }
+  },
   computed: {
     ...mapState(['uid', 'cid'])
   },
   methods: {
+    ...mapMutations(['updateComments']),
     onDropdownClick() {
       this.isShow = true;
     },
@@ -127,10 +139,10 @@ export default {
           is_clean: Math.floor(this.form.is_clean),
           has_food: Math.floor(this.form.has_food),
           has_mall: Math.floor(this.form.has_mall),
-          uid: this.uid,
-          cid: Number(this.cid)
+          cid: this.cid
         });
-
+        let res = await api.getComments({poi: this.cid, page: 1});
+        this.updateComments({comments: res, clear: true});
         this.$Message.success({
           content: `发布成功~`
         });

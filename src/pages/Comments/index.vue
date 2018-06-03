@@ -16,21 +16,19 @@ import { mapMutations } from 'vuex';
 import api from '@/api';
 export default {
   async created() {
+    if (process.env.NODE_ENV !== 'development') {
     // 登录后获取openid
-    // const res = await api.getUid();
-    // this.updateUid({uid: res.data.openid});
-
-    console.log(this.$route.query.openid);
-    // this.updateUid({uid: this.$route.query.openid})
-    this.updateUid({uid: 'ADCDB1ECC58BD09293234DC60456CC7B'});
+      this.updateUid({uid: this.$route.query.openid});
+    } else {
+      this.updateUid({uid: 'ADCDB1ECC58BD09293234DC60456CC7B'});
+    }
   },
   methods: {
     ...mapMutations(['updateComments', 'updateCid', 'updateUid']),
     async onSelect({
       id: poi
     }) {
-      const res = await api.getComments({poi, page: 1});
-
+      let res = await api.getComments({poi, page: 1});
       // // 评价列表存在vuex
       this.updateComments({comments: res, clear: true});
       this.updateCid({cid: poi});

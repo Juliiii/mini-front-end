@@ -4,10 +4,10 @@
 			<img src="../assets/img/11.jpg" alt="">
 			<div class="tit-info" v-if="tabName == 'comment'">
 				<div class="info-addr">
-					发布于<span class="addr">{{personInfo.addr}}</span>
+					发布于<span class="addr">{{personInfo.village}}</span>
 				</div>
 				<div class="info-time">
-					<span class="cycle">{{personInfo.cycle}}</span><span class="time">{{personInfo.time}}</span>
+					<span class="cycle">{{personInfo.how_go}}</span><span class="time">{{personInfo.how_long}}</span>
 				</div>
 			</div>
 			<div class="head-info" v-if="tabName == 'rent'">
@@ -27,9 +27,9 @@ export default {
 				return {
 					sex: '男',
 					age: 0,
-					addr: '不详',
-					cycle: '',
-					time: ''
+					village: '不详',
+					how_go: '',
+					how_long: ''
 				}
 				
 			}

@@ -19,6 +19,7 @@
 <script>
 import api from '../api';
 import { debounce } from '@/util';
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'm-search',
@@ -29,6 +30,7 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['updateCid', 'updateComments']),
     onSelect (item) {
       this.keyWord = item.address;
       this.$emit('select', item);
@@ -37,6 +39,8 @@ export default {
     onChange: debounce(async function() {
       if (this.keyWord === '') {
         this.lists = [];
+        this.updateCid({cid: ''});
+        this.updateComments({comments: [], clear: true});
         return;
       }
       const res = await api.getAddressList(this.keyWord);

@@ -11,6 +11,8 @@
 
 <script>
 import echarts from 'echarts';
+import api from '@/api'
+import { mapState } from 'vuex';
 
 export default {
   data() {
@@ -60,8 +62,20 @@ export default {
     this.chart = echarts.init(document.getElementById('echart'));
 
     this.chart.setOption(this.option);
+  },
+  computed: {
+      ...mapState(['cid'])
+  },
+  async created() {
+      if (!this.cid) {
+          this.$Message.error({
+              content: '请选择一个地址'
+          });
+          this.$router.push('/comments');
+          return;
+      }
+      await api.getMainData({cid: this.cid});
   }
-
 }
 </script>
 

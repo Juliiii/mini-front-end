@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <m-tabs :configs="tabsConfigs"  v-if="path !== '/'" />
+    <m-tabs :configs="tabsConfigs"  v-if="path !== '/login'" />
     <router-view/>
   </div>
 </template>
 
 <script>
 
-
+import { mapMutations } from 'vuex';
 export default {
   name: 'App',
   data () {
@@ -24,9 +24,16 @@ export default {
   created () {
     this.path = this.$route.fullPath;
   },
+  methods: {
+    ...mapMutations(['updateComments', 'updateCid'])
+  },
   watch: {
     '$route.fullPath'(val) {
       this.path = val;
+      if (val && val.indexOf('/comments') === -1) {
+        this.updateCid({cid: ''});
+        this.updateComments({comments: [], clear: true});
+      }
     }
   }
 };
