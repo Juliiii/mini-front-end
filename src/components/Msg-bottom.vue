@@ -55,7 +55,7 @@ export default {
 		},
 		tags: {
       type: Array,
-      required: true,
+      required: false,
       default: () => []
 		},
 		commuNum: {

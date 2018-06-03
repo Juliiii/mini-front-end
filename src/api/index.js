@@ -128,74 +128,34 @@ class Api {
   }
 
   /**
-   * 获取合租请求列表
-   * 
-   * @param {any} {
-   *     user_id,
-   *     offset,
-   *     limit
-   *   }
-   * @returns
+   * 修改用户信息
+   *
+   * @param {*} data
    * @memberof Api
    */
-  async getContactReqs ({
-    user_id,
-    offset,
-    limit
-  }) {
-    const params = qs.stringify({
-      user_id,
-      offset,
-      limit
+  async changeInfo (data) {
+    const param = qs.stringify({
+      openid: store.state.uid,
+      ...data
     });
 
-    const url = `${this.baseUrl}/contacts?${params}`;
+    const url = `${this.baseUrl}/change?${param}`;
 
     const res = await axios.get(url);
 
-    return res.data;
+    return res;
   }
 
-  /**
-   * 同意或拒绝合租
-   *
-   * @param {any} {
-   *       contact_id
-   *     }
-   * @param {any} {
-   *       accept_status
-   *     }
-   * @memberof Api
-   */
-  async resContactReq (
-    {
-      contact_id
-    },
-    {
-      accept_status
-    }) {
-    const url = `${this.baseUrl}/contact/${contact_id}`;
+  async getContact () {
+    const param = qs.stringify({
+      openid: store.state.uid
+    });
 
-    const body = {
-      operation: 2,
-      accept_status
-    };
-
-    await axios.post(url, body);
-  }
-
-  /**
-   * 获取uid
-   *
-   * @returns
-   * @memberof Api
-   */
-  async getUid () {
-    const url = `${this.baseUrl}/user/info`;
+    const url = `${this.baseUrl}/contactcenter?${param}`;
 
     const res = await axios.get(url);
 
-    return res.data;
+    return res;
   }
 }
 

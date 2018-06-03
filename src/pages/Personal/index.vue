@@ -6,20 +6,20 @@
     </div>
     <div class="personal-info-wrapper">
       <div class="personal-info-item">
-        <span class="personal-info-name">刘居说 (已认证) <span class="personal-info-spec" style="margin-left: 5px;"> 男 24岁</span></span>
+        <span class="personal-info-name">{{user.name}} ({{user.auth ? '已' : '未'}}认证) <span class="personal-info-spec" style="margin-left: 5px;"> {{user.sex === 'M' ? '男' : '女'}} {{user.age}}岁</span></span>
         <m-button :type="8" class="button-edit" @click="$router.push('/edit')"/>
       </div>
-      <div class="personal-info-spec personal-info-item">liujushuo@email.com</div>
-      <div class="personal-info-spec personal-info-item">13719177292</div>
-      <div class="personal-info-spec personal-info-item">腾讯科技有限公司</div>
+      <div class="personal-info-spec personal-info-item">{{user.email}}</div>
+      <div class="personal-info-spec personal-info-item">{{user.tel}}</div>
+      <div class="personal-info-spec personal-info-item">{{user.cid}}</div>
     </div>
   </div>
 
   <div class="line"></div>
 
 
-  <publish-item />
-  <contact-item />
+  <!-- <publish-item /> -->
+  <!-- <contact-item /> -->
   <message-item v-for="contact in contacts" :key="contact" />
 </div>
 </template>
@@ -48,21 +48,19 @@ export default {
   },
   async created() {
     await this.getUserInfo();
+    await this.getContact();
   },
   methods: {
     async getUserInfo() {
       const res = await api.getUserInfo();
 
-      this.user = res.data;
+      this.user = res;
     },
-    async getContacts() {
-      const res = await api.getContacts({
-        user_id: this.uid,
-        offset: 0,
-        limit: 1000
-      });
+    async getContact() {
+      const res = await api.getContact();
 
-      this.contacts = res.data;
+
+      console.log(res);
     }
   }
 };
