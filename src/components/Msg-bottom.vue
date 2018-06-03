@@ -22,14 +22,14 @@
 
 		<div v-if="tabName == 'message'" class="m-bottom-message">
 			<span class="commu-num">
-				{{date}}
+				{{formatDate}}
 			</span>
 			<div class="m-buttom-button-group">
-				<template v-if="status === 0">
-					<IButton type="text">保持联系</IButton>
-					<IButton type="text">拒绝联系</IButton>
+				<template v-if="state === 0">
+					<IButton type="text" @click="onAgree">保持联系</IButton>
+					<IButton type="text" @click="onReject">拒绝联系</IButton>
 				</template>
-				<template v-else-if="status === 1">
+				<template v-else-if="state === 1">
 					<IButton type="text" disabled>已联系</IButton>
 				</template>
 				<template v-else>
@@ -41,6 +41,11 @@
 </template>
 
 <script>
+import moment from "moment";
+import api from '@/api';
+import { mapMutations } from 'vuex';
+
+
 export default {
 	name: 'm-msg-bottom',
   props: {
@@ -75,11 +80,14 @@ export default {
 				
 			}
 		},
-		status: {
+		state: {
 			type: Number
 		},
 		date: {
 			type: String
+		},
+		reqId: {
+			type: Number
 		}
   },
   data () {
@@ -93,8 +101,32 @@ export default {
 		},
 		mIconType: function () {
       return 'android-' + this.moodInfo.moodType
+		},
+		formatDate() {
+				return moment(new Date(this.date)).format('YYYY-MM-DD HH:mm:ss');
 		}
-  }
+	},
+	methods: {
+		...mapMutations(['updateContacts']),
+		async onAgree() {
+			await api.reContact({
+				id: this.reqId,
+				op: 1
+			});
+
+			const res = await api.getContact();
+			this.updateContacts({contacts: res, clear: true});
+		},
+		async onReject() {
+			await api.reContact({
+				id: this.reqId,
+				op: 2
+			});
+
+			const res = await api.getContact();
+			this.updateContacts({contacts: res, clear: true});
+		}
+	}
 }
 </script>
 <style lang="scss">

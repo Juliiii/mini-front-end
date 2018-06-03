@@ -5,6 +5,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     comments: [],
+    contacts: [],
     cid: '',
     title: '',
     address: '',
@@ -25,6 +26,13 @@ export default new Vuex.Store({
         state.comments = [...state.comments, ...payload.comments];
       } else {
         state.comments = [...payload.comments];
+      }
+    },
+    updateContacts(state, payload) {
+      if (!payload.clear) {
+        state.contacts = [...state.contacts, ...payload.contacts];
+      } else {
+        state.contacts = [...payload.contacts];
       }
     }
   },

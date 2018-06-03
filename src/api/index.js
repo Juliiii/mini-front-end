@@ -13,7 +13,7 @@ class Api {
    * @param {any} company_name
    * @memberof Api
    */
-  async getAddressList (company_name) {
+  async getAddressList(company_name) {
     const params = qs.stringify({
       company_name,
       openid: store.state.uid
@@ -32,7 +32,7 @@ class Api {
    * @param {any} {
    * @memberof Api
    */
-  async getComments ({
+  async getComments({
     poi,
     page
   }) {
@@ -64,7 +64,7 @@ class Api {
    *   } 
    * @memberof Api
    */
-  async publishComments ({
+  async publishComments({
     uid,
     cid,
     village,
@@ -97,7 +97,7 @@ class Api {
    *
    * @memberof Api
    */
-  async getMainData({cid}) {
+  async getMainData({ cid }) {
     const params = qs.stringify({
       poi: cid,
       openid: store.state.uid
@@ -116,7 +116,7 @@ class Api {
    * @returns 
    * @memberof Api
    */
-  async getUserInfo () {
+  async getUserInfo() {
     const param = qs.stringify({
       openid: store.state.uid
     });
@@ -133,7 +133,7 @@ class Api {
    * @param {*} data
    * @memberof Api
    */
-  async changeInfo (data) {
+  async changeInfo(data) {
     const param = qs.stringify({
       openid: store.state.uid,
       ...data
@@ -146,7 +146,13 @@ class Api {
     return res;
   }
 
-  async getContact () {
+  /**
+   * 获取联系列表
+   * 
+   * @returns 
+   * @memberof Api
+   */
+  async getContact() {
     const param = qs.stringify({
       openid: store.state.uid
     });
@@ -155,7 +161,25 @@ class Api {
 
     const res = await axios.get(url);
 
-    return res;
+    return res.data;
+  }
+
+  /**
+   * 回复联系
+   * 
+   * @param {any} { id, op } 
+   * @memberof Api
+   */
+  async reContact({ id, op }) {
+    const param = qs.stringify({
+      id,
+      op,
+      openid: store.state.uid
+    });
+
+    const url = `${this.baseUrl}/recontact?${param}`;
+
+    await axios.get(url);
   }
 }
 

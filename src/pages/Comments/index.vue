@@ -20,7 +20,7 @@ export default {
     // 登录后获取openid
       this.updateUid({uid: this.$route.query.openid});
     } else {
-      this.updateUid({uid: 'ADCDB1ECC58BD09293234DC60456CC7B'});
+      this.updateUid({uid: '3A043974BF69F0A9CF9818F4D33F6F9E'});
     }
   },
   methods: {
