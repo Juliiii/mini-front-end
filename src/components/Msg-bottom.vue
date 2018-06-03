@@ -6,18 +6,18 @@
 				{{moodInfo.thumbNum}}
 				<Icon :type="mIconType"></Icon>{{moodInfo.moodNum}}
 			</div>
-			<div class="tag" v-for="tag in tags" :key="tag">
+<!-- 			<div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
 			</div>
-		</div>
+ -->		</div>
 		
 		<div v-if="tabName == 'rent'" class="icon-wrapper-joint">
 			<div class="commu-num">
 				{{commuNum}}人已联系
 			</div>
-			<div class="tag" v-for="tag in tags" :key="tag">
+			<!-- <div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
-			</div>
+			</div> -->
 		</div>
 
 		<div v-if="tabName == 'message'" class="m-bottom-message">
@@ -53,12 +53,12 @@ export default {
       required: true,
       default: () => ''
 		},
-		tags: {
+/* 		tags: {
       type: Array,
       required: true,
       default: () => []
 		},
-		commuNum: {
+ */		commuNum: {
 			type: Number,
       required: true,
       default: () => 0

@@ -26,6 +26,7 @@
 // 7 代表 保存信息
 // 8 代表 更改信息
 // 9 代表 重新认证
+// 10 代表 提交认证
 
 export default {
   name: 'm-button',
@@ -58,6 +59,7 @@ export default {
         case 5:
         case 6:
         case 7:
+        case 10:
           return '8px';
         case 8:
         case 9:
@@ -71,6 +73,7 @@ export default {
         case 3:
         case 4:
         case 7:
+        case 10:
           return '#7c7c7c';
         case 5:
         case 6:
@@ -89,6 +92,7 @@ export default {
         case 4:
         case 7:
         case 9:
+        case 10:
           return '#ffffff';
         case 5:
         case 6:
@@ -117,6 +121,8 @@ export default {
           return '发布合租';
         case 9:
           return '重新认证';
+        case 10:
+          return '提交认证';
       };
     }
   }

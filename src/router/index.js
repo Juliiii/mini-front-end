@@ -12,6 +12,7 @@ import RentPublish from '@/pages/Rent/publish';
 
 import Personal from '@/pages/Personal';
 import Edit from '@/pages/Edit';
+import Auth from '@/pages/Auth';
 
 Vue.use(Router);
 
@@ -59,6 +60,11 @@ export default new Router({
       path: '/edit',
       name: 'Edit',
       component: Edit
+    },
+    {
+      path: '/auth',
+      name: 'Auth',
+      component: Auth
     }
   ]
 });

@@ -1,19 +1,21 @@
 <template>
 <div @touchstart = "onTouch($event)"
-    @touchend = "onTouchend($event)">
-  <!-- <m-search /> -->
-  
+  @touchend = "onTouchend($event)">
+  <div class="rents-search">
+    <m-search  @select="onSelect" />
+  </div>
   <Scroll
     class="comments-list rent-list" 
     :height="height" 
+     @on-reach-bottom="onReachBottom"
     >
-    <div v-for="(item, index) in infoData">
-     <m-message :personInfo="item" :key="index" :tabName="tabName" class="list-item" @click.native="onClick()"/>  
-    </div>
-    <m-dialog 
-      v-if="dialogStatus"
-      @touchend.native = "slide($event)"
-      :on-close="() => dialogStatus = false" />
+    <div v-for="(rent, index) in rents">
+      <m-message :personInfo="rent" :key="index" :tabName="tabName" class="list-item" @click.native="onClick()"/>  
+      <m-dialog 
+        v-if="dialogStatus"
+        @touchend.native = "slide($event)"
+        :on-close="() => dialogStatus = false" :on-contact="onContact()" />
+    </div>      
   </Scroll>
   <div class="btn-publish">
     <m-button :type="6" @click="$router.push('/rent/publish')"/>
@@ -23,7 +25,11 @@
 </template>
 
 <script>
-import axios from '@/axios'
+import api from '../../api';
+import { debounce } from '@/util';
+import { mapState, mapMutations } from 'vuex';
+import { bus } from '@/bus';
+
 
 var startX = 0,
     startY = 0,
@@ -34,26 +40,33 @@ var X,Y;
 export default {
   data() {
     return {
+      cid: '',
       height:0,
       tabName: 'rent',
       dialogStatus: false,
       btnActive: true,
-      infoData: []
+      isShow: false
     }
+  },
+  computed: {
+    ...mapState(['title', 'address', 'id', 'category', 'rents'])
   },
   mounted() {
     this.onResize();
     window.addEventListener('resize', this.onResize);
     window.addEventListener('scroll', this.showBtn);
-    this.infoData = this.getInfo()
+    this.getRentList();
+    bus.$on('select', this.handelSearch)
     
   },
   beforeDestroy() {
+    
     window.removeEventListener('resize', this.onResize);
     window.removeEventListener('scroll', this.showBtn);
     
   },
   methods: {
+    ...mapMutations(['updateRents', 'updateCid']),
     onResize() {
       const dom = document.documentElement || document.body;
       const clientHeight = dom.clientHeight;
@@ -66,6 +79,78 @@ export default {
       e.stopPropagation()
       //e.preventDefault()
     },
+/*     onSelect(item) {
+      this.form.way = item;
+      this.isShow = false;
+    },
+
+ */
+    handelSearch(item) {
+      this.cid = item.id
+    },
+    async onSelect({ }) {
+      const res = await api.getRents({});
+
+      // 合租列表存在vuex
+      this.updateRents({rents: res.data, clear: true});
+      this.updateCid({
+        cid: poi,
+        title,
+        address,
+        category
+      });
+
+      // 这里可能是别的页面搜索，所以调回列表页
+      this.$router.push('/rent');
+    },
+    
+    async onReachBottom() {
+      if (this.loading || this.reachEnd) return;
+      try {
+        this.loading = true;
+
+        const res = await api.getRents();
+        console.log(res);
+        if (res.data.length === 0) {
+          this.reachEnd = true;
+        }
+        this.updateRents({rents: res.data});
+        this.page++;
+      } catch (err) {
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    async getRentList() {
+      console.log(await api.getRents())
+      // const res = await api.getRents();
+      // console.log(res);
+    },
+
+    async onContact(jid, request) {
+      if (this.loading) return;
+      console.log('contact')
+      try {
+        this.loading = true;
+        const params = {
+          opration: 1,
+          jid: jid,
+          request: request
+        };
+
+        const res = await api.contact(params);
+        if (res.status === 1) {
+          alert('contact')
+        }
+      } catch (err) {
+      } finally {
+        this.loading = false;
+      }
+      
+    },
+
+    // button control
     showBtn() {
       this.btnActive = true;
     },
@@ -88,17 +173,6 @@ export default {
           this.btnActive = true;
         }
     },
-    getInfo() {
-      axios.get('/join_rents/filter-by-user?user_id=6&offset=&limit=')
-      .then(function(response){
-        console.log(response.data);
-        return response.data;
-      })
-      .catch(function(err){
-        console.log(err);
-      });
-    }
-    
   }
 }
 //获得角度

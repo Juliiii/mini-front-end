@@ -6,6 +6,8 @@ import MsgBottom from './Msg-bottom'
 import Search from './Search'
 import SentMessage from './SentMessage'
 import Tabs from './Tabs'
+import Select from './Select'
+
 
 export default {
     Button,
@@ -15,5 +17,6 @@ export default {
     MsgBottom,
     Search,
     SentMessage,
-    Tabs
+    Tabs,
+    Select
 }

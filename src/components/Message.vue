@@ -7,7 +7,7 @@
 		<p>{{content}}</p>
 	</div>
 
-	<m-msg-bottom :tabName="tabName" :tags="tags" :commuNum="commuNum"/>
+	<m-msg-bottom :tabName="tabName" :commuNum="commuNum"/>
 </div>
 </template>
 
@@ -24,13 +24,6 @@ export default {
 				cycle: this.personInfo.how_go || '',
 				time: this.personInfo.how_long || ''
 			},
-			tags:[
-				'干净1',
-				'干净2',
-				'干净3',
-				'干净4',
-				'干净5'
-			],
 			commuNum: 10,
 			content: this.personInfo.discription || ''
     };

@@ -3,7 +3,7 @@
     <div class="box">
       <div class="dialog" @click.stop="() => {}">
         <m-message :tabName="tabName"/>
-        <m-sentMessage :on-close="onClose" />
+        <m-sentMessage :on-close="onClose" :on-contact="onContact"/>
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'm-dialog',
-  props: ['on-close','tabName'],
+  props: ['on-close','on-contact','tabName'],
 }
 </script>
 <style lang="scss">

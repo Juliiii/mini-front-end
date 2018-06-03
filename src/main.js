@@ -6,7 +6,8 @@ import router from './router';
 import axios from './axios';
 import map from 'lodash/map'
 import 'iview/dist/styles/iview.css';
-import components from '@/components'
+import components from '@/components';
+import store from '@/store';
 
 import {
     Avatar,
@@ -28,9 +29,13 @@ import {
     CheckboxGroup,
     RadioGroup,
     TimePicker,
-    DatePicker
+    DatePicker,
+    Upload,
+    Message,
 } from 'iview';
 
+Vue.prototype.$Message = Message;
+Vue.component('Upload', Upload);
 Vue.component('Avatar', Avatar);
 Vue.component('Spin', Spin);
 Vue.component('Scroll', Scroll);
@@ -61,6 +66,7 @@ Vue.prototype.axios = axios;
 new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App/>'
 });
