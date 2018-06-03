@@ -2,7 +2,7 @@
 <div class="personal-wrapper">
   <div class="personal-profile">
     <div class="personal-avatar-wrapper">
-      <img class="personal-avatar" src="../../assets/img/11.jpg" alt="">
+      <img class="personal-avatar" :src="avatar" alt="">
     </div>
     <div class="personal-info-wrapper">
       <div class="personal-info-item">
@@ -44,7 +44,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(['uid'])
+    ...mapState(['uid']),
+    avatar() {
+      return this.user.photo ? this.user.photo : "https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png";
+    }
   },
   async created() {
     await this.getUserInfo();

@@ -1,7 +1,7 @@
 <template>
 	<div class="m-header-wrapper">
 		<div class="tit">
-			<img src="../assets/img/11.jpg" alt="">
+			<img :src="avatar" alt="">
 			<div class="tit-info" v-if="tabName == 'comment'">
 				<div class="info-addr">
 					发布于<span class="addr">{{personInfo.village}}</span>
@@ -20,6 +20,11 @@
 <script>
 export default {
 	name: 'm-msg-header',
+	computed: {
+		avatar() {
+			return this.personInfo.picture ? this.personInfo.picture : 'https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png';
+		}
+	},
   props: {
 		personInfo: {
 			type: Object,
