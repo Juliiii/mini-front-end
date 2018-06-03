@@ -23,12 +23,18 @@ export default {
   methods:{
     onSubmit(rid) {
       // 提交留言
+      if(this.content.length == 0){
+        this.$Message.error({
+            content: `别留空哦~`
+          });
+
+          return;
+      }
       this.onClose();
       this.onContact(this.rid, this.content)
     },
     async onContact(rid, content) {
       if (this.loading) return;
-      console.log('contact')
       try {
         this.loading = true;
         const params = {
@@ -37,7 +43,6 @@ export default {
         };
 
         const res = await api.addContact(params);
-        alert(res.state)
       } catch (err) {
       } finally {
         this.loading = false;

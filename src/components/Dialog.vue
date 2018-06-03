@@ -12,7 +12,12 @@
 <script>
 export default {
   name: 'm-dialog',
-  props: ['on-close','tabName', 'item', 'commuNum'],
+  data () {
+    return {
+      tabName: 'rent'
+    }
+  },
+  props: ['on-close', 'item', 'commuNum']
 }
 </script>
 <style lang="scss">

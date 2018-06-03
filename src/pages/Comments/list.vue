@@ -10,6 +10,7 @@
       :tabName="tabName"
       class="list-item"
       :item="comment"
+      :commuNum="0"
       :key="index" />
     <div v-if="realComments.length === 0 && cid">
       暂时没有人来评价, 要不你来评价一下？

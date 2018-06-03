@@ -26,11 +26,11 @@
         :item="rent"
         :commuNum="rent.contacts"/>
     </div>
-    
+    <div v-if="realRents.length === 0 && cid" >
+      暂时没有人要合租哦？来发布一个吧~
+    </div>
   </Scroll>
-  <div v-if="realRents.length === 0 && cid">
-    暂时没有人要合租哦？
-  </div>
+  
   <div class="btn-publish">
     <m-button :type="6" @click="$router.push('/rent/publish')"/>
   </div>
@@ -62,7 +62,10 @@ export default {
       tabName: 'rent',
       dialogStatus: false,
       btnActive: true,
-      isShow: false
+      isShow: false,
+      loading: false,
+      reachEnd: false,
+      page: 1
     }
   },
   computed: {
@@ -72,14 +75,11 @@ export default {
       return this.rents.map(item => {
         const res = JSON.parse(JSON.stringify(item));
         res.sex = sexMap[res.sex];
-        res.contacts = res.contacts + '人已联系';
-
         console.log('rents',res);
 
         return res;
       });
     }
-    // ...mapState(['title', 'address', 'id', 'category', 'rents'])
   },
   mounted() {
     this.onResize();
@@ -105,14 +105,7 @@ export default {
     },
     slide(e) {
       e.stopPropagation()
-      //e.preventDefault()
     },
-/*     onSelect(item) {
-      this.form.way = item;
-      this.isShow = false;
-    },
-
- */
     handelSearch(item) {
       this.cid = item.id
     },
@@ -125,7 +118,7 @@ export default {
       this.updateCid({cid: poi});
 
       // 这里可能是别的页面搜索，所以调回列表页
-      this.$router.push('/Rents');
+      // this.$router.push('/Rents');
     },
     
     async onReachBottom() {

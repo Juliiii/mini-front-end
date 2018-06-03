@@ -5,6 +5,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         comments: [],
+        contacts: [],
         rents: [],
         cid: '',
         title: '',
@@ -34,7 +35,16 @@ export default new Vuex.Store({
                 state.rents = [...payload.rents];
             }
             console.log('up', state.rents)
-        }
+        },
+        updateContacts(state, payload) {
+
+            if (!payload.clear) {
+                state.contacts = [...state.contacts, ...payload.contacts];
+            } else {
+                state.contacts = [...payload.contacts];
+            }
+        },
+
     },
     actions: {}
 });

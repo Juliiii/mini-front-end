@@ -16,16 +16,12 @@
   </div>
 
   <div class="line"></div>
-
-
-  <!-- <publish-item /> -->
-  <!-- <contact-item /> -->
-  <message-item v-for="contact in contacts" :key="contact" />
+  <message-item v-for="contact in contacts" :item="contact ? contact : {}" :key="contact.id" />
 </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import api from '@/api';
 
 import contactItem from './contactItem';
@@ -39,12 +35,11 @@ export default {
   },
   data() {
     return {
-      contacts: [1,2,3,4],
       user: {}
     };
   },
   computed: {
-    ...mapState(['uid']),
+    ...mapState(['uid', 'contacts']),
     avatar() {
       return this.user.photo ? this.user.photo : "https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png";
     }
@@ -54,6 +49,7 @@ export default {
     await this.getContact();
   },
   methods: {
+    ...mapMutations(['updateContacts']),
     async getUserInfo() {
       const res = await api.getUserInfo();
 
@@ -61,9 +57,7 @@ export default {
     },
     async getContact() {
       const res = await api.getContact();
-
-
-      console.log(res);
+      this.updateContacts({contacts: res, clear: true});
     }
   }
 };

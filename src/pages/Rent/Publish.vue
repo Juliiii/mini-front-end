@@ -84,11 +84,6 @@ export default {
       height:0,
       goWorkWays: ['走路', '公交', '地铁', '骑车', '小车'],
       form: {
-        cid: '',
-        name: '',
-        sex: '',
-        age: '',
-        community: '',
         email: '',
         tele: '',
         hobby: '',
@@ -135,6 +130,10 @@ export default {
        ismailErr: false
     }
   },
+  computed:{
+    ...mapState(['uid', 'cid'])
+    
+  },
   
   mounted() {
     this.onResize();
@@ -151,6 +150,8 @@ export default {
     window.removeEventListener('resize', this.onResize);
   },
   methods: {
+    ...mapMutations(['updateRents']),
+    
     onResize() {
       const dom = document.documentElement || document.body;
       const clientHeight = dom.clientHeight;
@@ -182,7 +183,7 @@ export default {
 
     },
     checkMail() {
-      this.ismailErr = !ismail(this.form.email);
+      // this.ismailErr = !ismail(this.form.email);
     },
     handelPet(item) {
       this.form.adopt_pet = item.value;
@@ -194,6 +195,15 @@ export default {
       console.log(v);
     },
     async onPublish() {
+      for (const key of Object.keys(this.form)) {
+        if (!this.form[key]) {
+          this.$Message.error({
+            content: `别留空哦~`
+          });
+
+          return;
+        }
+      }
       try {
         this.loading = true;
         const params = {
@@ -210,19 +220,20 @@ export default {
         };
 
         const res = await api.publishRent(params);
-        console.log(res)
-        if (res.status === 0) {
-          this.reachEnd = true;
-          this.$router.push('/rent');
-          
-        }
+        this.updateRents({rents: res, clear: true});
+        this.$Message.success({
+          content: `发布成功~`
+        });
+        this.$router.push('/rent');
+        
       console.log(params)
         
       } catch (err) {
-
+        console.log('err',err)
       } finally {
         this.loading = false;
-
+        // this.$router.push('/rent');
+        
       }
       
     }

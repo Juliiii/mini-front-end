@@ -48,7 +48,8 @@ export default {
         return;
       }
       const res = await api.getAddressList(this.keyWord);
-      this.lists = res.data;
+      console.log(res)
+      this.lists = res.data ? res.data : [];
     }, 1000)
   }
 };

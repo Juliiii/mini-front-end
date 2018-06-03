@@ -4,7 +4,10 @@ import store from '../store';
 
 class Api {
     constructor() {
-        this.baseUrl = 'http://jushuo.anycodes.cn';
+        // this.baseUrl = 'http://jushuo.anycodes.cn';
+        // this.baseUrl = 'https://www.ultrasoftware.cn';
+        // this.baseUrl = 'http://119.28.190.46:8002';
+        this.baseUrl = 'http://admin.ultrasoftware.cn';
     }
 
     /**
@@ -18,8 +21,8 @@ class Api {
             company_name,
             openid: store.state.uid
         });
-
         const url = `${this.baseUrl}/companys/search-by-name?${params}`;
+        console.log(url)
 
         const res = await axios.get(url);
 
@@ -146,6 +149,12 @@ class Api {
         return res;
     }
 
+    /**
+     * 获取联系列表
+     * 
+     * @returns 
+     * @memberof Api
+     */
     async getContact() {
         const param = qs.stringify({
             openid: store.state.uid
@@ -154,9 +163,28 @@ class Api {
         const url = `${this.baseUrl}/contactcenter?${param}`;
 
         const res = await axios.get(url);
-
-        return res;
+        console.log(res)
+        return res.data;
     }
+
+    /**
+     * 回复联系
+     * 
+     * @param {any} { id, op } 
+     * @memberof Api
+     */
+    async reContact({ id, op }) {
+        const param = qs.stringify({
+            id,
+            op,
+            openid: store.state.uid
+        });
+
+        const url = `${this.baseUrl}/recontact?${param}`;
+
+        await axios.get(url);
+    }
+
 
     /**
      * 获取合租信息列表

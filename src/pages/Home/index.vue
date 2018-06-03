@@ -5,7 +5,7 @@
   <p style="width: 300px" >以公司为中心真实客观的房源评价软件</p>
 
   <div @click="onClick">
-    <img src="../../assets/img/qq.png" alt="" class="logo">
+    <img src="https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png" alt="" class="logo">
     <p>点击进行登录</p>
   </div>
 </div>  

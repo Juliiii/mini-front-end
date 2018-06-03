@@ -11,7 +11,7 @@
 				</div>
 			</div>
 			<div class="head-info" v-if="tabName == 'rent'">
-				{{personInfo.sex}} &nbsp;{{personInfo.age}}岁
+				{{personInfo.sex ? personInfo.sex : '不详'}} &nbsp;{{personInfo.age}}岁
 			</div>
 		</div>
 	</div>
@@ -30,7 +30,7 @@ export default {
 			type: Object,
 			default: function(){
 				return {
-					sex: '男',
+					sex: '不详',
 					age: 0,
 					village: '不详',
 					how_go: '',
