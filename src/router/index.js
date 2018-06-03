@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
+import login from '@/pages/Home';
+
 import Comments from '@/pages/Comments';
 import Rent from '@/pages/Rent';
 
@@ -18,6 +21,11 @@ Vue.use(Router);
 
 export default new Router({
   routes: [
+    {
+      path: '/login',
+      name: 'Login',
+      component: login
+    },
     {
       path: '/comments',
       name: 'Comments',

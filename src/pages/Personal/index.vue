@@ -2,29 +2,32 @@
 <div class="personal-wrapper">
   <div class="personal-profile">
     <div class="personal-avatar-wrapper">
-      <img class="personal-avatar" src="../../assets/img/11.jpg" alt="">
+      <img class="personal-avatar" :src="avatar" alt="">
     </div>
     <div class="personal-info-wrapper">
       <div class="personal-info-item">
-        <span class="personal-info-name">刘居说 (已认证) <span class="personal-info-spec" style="margin-left: 5px;"> 男 24岁</span></span>
+        <span class="personal-info-name">{{user.name}} ({{user.auth ? '已' : '未'}}认证) <span class="personal-info-spec" style="margin-left: 5px;"> {{user.sex === 'M' ? '男' : '女'}} {{user.age}}岁</span></span>
         <m-button :type="8" class="button-edit" @click="$router.push('/edit')"/>
       </div>
-      <div class="personal-info-spec personal-info-item">liujushuo@email.com</div>
-      <div class="personal-info-spec personal-info-item">13719177292</div>
-      <div class="personal-info-spec personal-info-item">腾讯科技有限公司</div>
+      <div class="personal-info-spec personal-info-item">{{user.email}}</div>
+      <div class="personal-info-spec personal-info-item">{{user.tel}}</div>
+      <div class="personal-info-spec personal-info-item">{{user.cid}}</div>
     </div>
   </div>
 
   <div class="line"></div>
 
 
-  <publish-item />
-  <contact-item />
+  <!-- <publish-item /> -->
+  <!-- <contact-item /> -->
   <message-item v-for="contact in contacts" :key="contact" />
 </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import api from '@/api';
+
 import contactItem from './contactItem';
 import publishItem from './publishItem';
 import messageItem from './messageItem';
@@ -36,8 +39,32 @@ export default {
   },
   data() {
     return {
-      contacts: [1,2,3,4]
+      contacts: [1,2,3,4],
+      user: {}
     };
+  },
+  computed: {
+    ...mapState(['uid']),
+    avatar() {
+      return this.user.photo ? this.user.photo : "https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png";
+    }
+  },
+  async created() {
+    await this.getUserInfo();
+    await this.getContact();
+  },
+  methods: {
+    async getUserInfo() {
+      const res = await api.getUserInfo();
+
+      this.user = res;
+    },
+    async getContact() {
+      const res = await api.getContact();
+
+
+      console.log(res);
+    }
   }
 };
 </script>

@@ -15,7 +15,7 @@ export default {
   },
   props: {
     selectList: {
-        type: Array,
+        // type: Array,
         required: true,
         default: () => []
     },

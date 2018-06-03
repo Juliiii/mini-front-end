@@ -10,20 +10,14 @@ export default new Vuex.Store({
         title: '',
         address: '',
         category: '',
-        uid: 'AED60BF9A6550AC9BCE4F21C3BAA9793',
-        name: '',
-        age: 0,
-        sex: ''
+        uid: ''
     },
     getters: {},
     mutations: {
         updateCid(state, payload) {
             state.cid = payload.cid;
-            state.title = payload.title;
-            state.address = payload.address;
-            state.category = payload.category;
         },
-        updateUid(state) {
+        updateUid(state, payload) {
             state.uid = payload.uid;
         },
         updateComments(state, payload) {
@@ -39,6 +33,7 @@ export default new Vuex.Store({
             } else {
                 state.rents = [...payload.rents];
             }
+            console.log('up', state.rents)
         }
     },
     actions: {}

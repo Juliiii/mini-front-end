@@ -21,6 +21,7 @@ import api from '../api';
 import { debounce } from '@/util';
 import { bus } from '@/bus';
 
+import { mapMutations } from 'vuex';
 
 export default {
   name: 'm-search',
@@ -31,15 +32,19 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(['updateCid', 'updateComments','updateRents']),
     onSelect (item) {
       this.keyWord = item.address;
-      bus.$emit('select', item);
-      console.log('3333')
+      this.$emit('select', item);
       this.lists = [];
     },
     onChange: debounce(async function() {
       if (this.keyWord === '') {
         this.lists = [];
+        this.updateCid({cid: ''});
+        this.updateComments({comments: [], clear: true});
+        this.updateRents({rents: [], clear: true});
+        
         return;
       }
       const res = await api.getAddressList(this.keyWord);

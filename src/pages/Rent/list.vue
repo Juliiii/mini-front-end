@@ -9,14 +9,28 @@
     :height="height" 
      @on-reach-bottom="onReachBottom"
     >
-    <div v-for="(rent, index) in rents">
-      <m-message :personInfo="rent" :key="index" :tabName="tabName" class="list-item" @click.native="onClick()"/>  
+    <div
+      v-if="realRents.length !== 0"
+      v-for="(rent, index) in realRents">
+      <m-message 
+        :tabName="tabName"
+        class="list-item"
+        :item="rent"
+        :commuNum="rent.contacts"
+        @click.native="onClick()"/>  
+        
       <m-dialog 
         v-if="dialogStatus"
         @touchend.native = "slide($event)"
-        :on-close="() => dialogStatus = false" :on-contact="onContact()" />
-    </div>      
+        :on-close="() => dialogStatus = false" 
+        :item="rent"
+        :commuNum="rent.contacts"/>
+    </div>
+    
   </Scroll>
+  <div v-if="realRents.length === 0 && cid">
+    暂时没有人要合租哦？
+  </div>
   <div class="btn-publish">
     <m-button :type="6" @click="$router.push('/rent/publish')"/>
   </div>
@@ -30,6 +44,10 @@ import { debounce } from '@/util';
 import { mapState, mapMutations } from 'vuex';
 import { bus } from '@/bus';
 
+const sexMap = {
+  f: '女',
+  m: '男'
+}
 
 var startX = 0,
     startY = 0,
@@ -40,7 +58,6 @@ var X,Y;
 export default {
   data() {
     return {
-      cid: '',
       height:0,
       tabName: 'rent',
       dialogStatus: false,
@@ -49,24 +66,35 @@ export default {
     }
   },
   computed: {
-    ...mapState(['title', 'address', 'id', 'category', 'rents'])
+    ...mapState(['cid', 'rents']),
+    realRents() {
+      console.log('realRents',this.rents)
+      return this.rents.map(item => {
+        const res = JSON.parse(JSON.stringify(item));
+        res.sex = sexMap[res.sex];
+        res.contacts = res.contacts + '人已联系';
+
+        console.log('rents',res);
+
+        return res;
+      });
+    }
+    // ...mapState(['title', 'address', 'id', 'category', 'rents'])
   },
   mounted() {
     this.onResize();
     window.addEventListener('resize', this.onResize);
     window.addEventListener('scroll', this.showBtn);
-    this.getRentList();
-    bus.$on('select', this.handelSearch)
+    // this.rents = this.getRentList();
+    // bus.$on('select', this.handelSearch)
     
   },
   beforeDestroy() {
-    
     window.removeEventListener('resize', this.onResize);
     window.removeEventListener('scroll', this.showBtn);
-    
   },
   methods: {
-    ...mapMutations(['updateRents', 'updateCid']),
+    ...mapMutations(['updateRents', 'updateCid', 'updateUid']),
     onResize() {
       const dom = document.documentElement || document.body;
       const clientHeight = dom.clientHeight;
@@ -88,33 +116,32 @@ export default {
     handelSearch(item) {
       this.cid = item.id
     },
-    async onSelect({ }) {
-      const res = await api.getRents({});
-
-      // 合租列表存在vuex
-      this.updateRents({rents: res.data, clear: true});
-      this.updateCid({
-        cid: poi,
-        title,
-        address,
-        category
-      });
+    async onSelect({
+      id: poi
+    }) {
+      let res = await api.getRents({poi, page: 1});
+      console.log('select',res)
+      this.updateRents({rents: res, clear: true});
+      this.updateCid({cid: poi});
 
       // 这里可能是别的页面搜索，所以调回列表页
-      this.$router.push('/rent');
+      this.$router.push('/Rents');
     },
     
     async onReachBottom() {
       if (this.loading || this.reachEnd) return;
       try {
         this.loading = true;
-
-        const res = await api.getRents();
-        console.log(res);
-        if (res.data.length === 0) {
+        const params = {
+          poi: this.cid,
+          page: this.page + 1
+        };
+        const res = await api.getRents(params);
+        console.log(res)
+        if (res.length === 0) {
           this.reachEnd = true;
         }
-        this.updateRents({rents: res.data});
+        this.updateRents({Rents: res});
         this.page++;
       } catch (err) {
       } finally {
@@ -123,32 +150,28 @@ export default {
     },
 
     async getRentList() {
-      console.log(await api.getRents())
-      // const res = await api.getRents();
-      // console.log(res);
-    },
-
-    async onContact(jid, request) {
-      if (this.loading) return;
-      console.log('contact')
       try {
         this.loading = true;
         const params = {
-          opration: 1,
-          jid: jid,
-          request: request
+          poi: this.cid,
+          page: 1
         };
+        var res = await api.getRents(params);
 
-        const res = await api.contact(params);
-        if (res.status === 1) {
-          alert('contact')
+        
+        if (res.length === 0) {
+          this.reachEnd = true;
         }
+        let res = await api.getRents({poi, page: 1});
+        this.updateRents({Rents: res, clear: true});
+        this.updateCid({cid: poi});
       } catch (err) {
       } finally {
         this.loading = false;
       }
-      
     },
+
+    
 
     // button control
     showBtn() {

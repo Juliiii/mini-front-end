@@ -1,13 +1,13 @@
 <template>
 	<div class="m-header-wrapper">
 		<div class="tit">
-			<img src="../assets/img/11.jpg" alt="">
+			<img :src="avatar" alt="">
 			<div class="tit-info" v-if="tabName == 'comment'">
 				<div class="info-addr">
-					发布于<span class="addr">{{personInfo.addr}}</span>
+					发布于<span class="addr">{{personInfo.village}}</span>
 				</div>
 				<div class="info-time">
-					<span class="cycle">{{personInfo.cycle}}</span><span class="time">{{personInfo.time}}</span>
+					<span class="cycle">{{personInfo.how_go}}</span><span class="time">{{personInfo.how_long}}</span>
 				</div>
 			</div>
 			<div class="head-info" v-if="tabName == 'rent'">
@@ -20,6 +20,11 @@
 <script>
 export default {
 	name: 'm-msg-header',
+	computed: {
+		avatar() {
+			return this.personInfo.picture ? this.personInfo.picture : 'https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png';
+		}
+	},
   props: {
 		personInfo: {
 			type: Object,
@@ -27,9 +32,9 @@ export default {
 				return {
 					sex: '男',
 					age: 0,
-					addr: '不详',
-					cycle: '',
-					time: ''
+					village: '不详',
+					how_go: '',
+					how_long: ''
 				}
 				
 			}

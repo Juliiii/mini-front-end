@@ -1,25 +1,25 @@
 import axios from '../axios';
 import qs from 'querystring';
-import store from '../store'
+import store from '../store';
 
 class Api {
     constructor() {
         this.baseUrl = 'http://jushuo.anycodes.cn';
-        this.uid = store.state.uid;
     }
 
     /**
      * 搜索公司名，获取匹配公司位置列表
-     * 
-     * @param {any} company_name 
+     *
+     * @param {any} company_name
      * @memberof Api
      */
     async getAddressList(company_name) {
         const params = qs.stringify({
-            company_name
+            company_name,
+            openid: store.state.uid
         });
 
-        const url = `${this.baseUrl}/companys/search-by-name?${params}&openid=${this.uid}`;
+        const url = `${this.baseUrl}/companys/search-by-name?${params}`;
 
         const res = await axios.get(url);
 
@@ -28,31 +28,20 @@ class Api {
 
     /**
      * 点击公司位置，获取房源评论列表
-     * 
+     *
      * @param {any} {
-     *     company_id,
-     *     offset,
-     *     limit
-     *   } 
      * @memberof Api
      */
     async getComments({
         poi,
-        title,
-        address,
-        category,
-        offset,
-        limit
+        page
     }) {
         const params = qs.stringify({
             poi,
-            title,
-            address,
-            category,
-            offset,
-            limit
+            page,
+            openid: store.state.uid
         });
-        const url = `${this.baseUrl}/comments/search-by-poi?${params}`;
+        const url = `${this.baseUrl}/companys/search-by-poi?${params}`;
 
         const res = await axios.get(url);
 
@@ -86,10 +75,8 @@ class Api {
         has_mall,
         description
     }) {
-        const url = `${this.baseUrl}/companys/comment`;
-
-        const res = await axios.post(url, {
-            uid,
+        const params = qs.stringify({
+            openid: store.state.uid,
             cid,
             village,
             how_go,
@@ -99,6 +86,74 @@ class Api {
             has_mall,
             description
         });
+        const url = `${this.baseUrl}/comment?${params}`;
+        const res = await axios.get(url);
+
+        return res;
+    }
+
+    /**
+     * 数据总览
+     *
+     * @memberof Api
+     */
+    async getMainData({ cid }) {
+        const params = qs.stringify({
+            poi: cid,
+            openid: store.state.uid
+        });
+
+        const url = `${this.baseUrl}/maindata?${params}`;
+
+        const res = await axios.get(url);
+        return res.data;
+    }
+
+    /**
+     * 获取当前用户信息
+     * 
+     * @param {any} user_id 
+     * @returns 
+     * @memberof Api
+     */
+    async getUserInfo() {
+        const param = qs.stringify({
+            openid: store.state.uid
+        });
+
+        const url = `${this.baseUrl}/userinfor?${param}`;
+
+        const res = await axios.get(url);
+        return res.data;
+    }
+
+    /**
+     * 修改用户信息
+     *
+     * @param {*} data
+     * @memberof Api
+     */
+    async changeInfo(data) {
+        const param = qs.stringify({
+            openid: store.state.uid,
+            ...data
+        });
+
+        const url = `${this.baseUrl}/change?${param}`;
+
+        const res = await axios.get(url);
+
+        return res;
+    }
+
+    async getContact() {
+        const param = qs.stringify({
+            openid: store.state.uid
+        });
+
+        const url = `${this.baseUrl}/contactcenter?${param}`;
+
+        const res = await axios.get(url);
 
         return res;
     }
@@ -110,11 +165,13 @@ class Api {
      *   } 
      * @memberof Api
      */
-    async getRents({
-
-    }) {
-        console.log('request')
-        const url = `${this.baseUrl}/getjoin?openid=${this.uid}`;
+    async getRents() {
+        const param = qs.stringify({
+            openid: store.state.uid
+        });
+        const url = `${this.baseUrl}/getjoin?${param}`;
+        console.log(url)
+            // const url = `${this.baseUrl}/getjoin?openid=${store.state.uid}`;
 
         const res = await axios.get(url);
 
@@ -151,6 +208,7 @@ class Api {
         remark
     }) {
         const params = qs.stringify({
+            openid: store.state.uid,
             contacts,
             price_low,
             price_high,
@@ -163,7 +221,7 @@ class Api {
             remark
         });
 
-        const url = `${this.baseUrl}/addjoin?openid=${this.uid}&${params}`;
+        const url = `${this.baseUrl}/addjoin?${params}`;
 
         const res = await axios.get(url);
 
@@ -171,35 +229,29 @@ class Api {
     }
 
     /**
-     * 与他人合租：填写表单
+     * 与他人合租联系：填写表单
      * 
      * @param {any} {
-     *     opration,
-     *     jid,
-     *     uid,
-     *     request,
+     *     rid,
+     *     content
      *   } 
      * @memberof Api
      */
-    async contact({
-        opration,
-        jid,
-        request
+    async addContact({
+        rid,
+        content
     }) {
-        const url = `${this.baseUrl}/contact`,
-            uid = `${this.uid}`
+        const params = qs.stringify({
+            openid: store.state.uid,
+            rid,
+            content
+        })
+        const url = `${this.baseUrl}/addcontact?${params}`;
 
-        const res = await axios.post(url, {
-            opration,
-            jid,
-            uid,
-            request
-        });
+        const res = await axios.get(url);
 
         return res;
     }
-
-
 }
 
 export default new Api();

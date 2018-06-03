@@ -2,8 +2,8 @@
   <div class="dialog-wrapper m-dialog" @click="onClose && onClose()">
     <div class="box">
       <div class="dialog" @click.stop="() => {}">
-        <m-message :tabName="tabName"/>
-        <m-sentMessage :on-close="onClose" :on-contact="onContact"/>
+        <m-message :commuNum="commuNum" :tabName="tabName" :item="item"/>
+        <m-sentMessage :on-close="onClose" />
       </div>
     </div>
   </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'm-dialog',
-  props: ['on-close','on-contact','tabName'],
+  props: ['on-close','tabName', 'item', 'commuNum'],
 }
 </script>
 <style lang="scss">

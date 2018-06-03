@@ -1,10 +1,10 @@
 
 <template>
 <div class="message-wrapper" id="message">
-	<m-msg-header :personInfo="personInfo" :tabName="tabName"/>
+	<m-msg-header :personInfo="item" :tabName="tabName"/>
 	
 	<div class="content">
-		<p>{{content}}</p>
+		<p>{{item.description}}</p>
 	</div>
 
 	<m-msg-bottom :tabName="tabName" :commuNum="commuNum"/>
@@ -17,16 +17,10 @@ export default {
 	name: 'm-message',
   data () {
     return {
-			personInfo: {
-				sex: this.personInfo.sex || '',
-				age: this.personInfo.age || '',
-				addr: this.personInfo.village || '',
-				cycle: this.personInfo.how_go || '',
-				time: this.personInfo.how_long || ''
-			},
-			commuNum: 10,
-			content: this.personInfo.discription || ''
     };
+	},
+	mounted( ){
+		console.log(this.item)
 	},
 	props: {
 		tabName: {
@@ -34,14 +28,17 @@ export default {
       required: true,
       default: () => ''
 		},
-		personInfo: {
+		item: {
 			type: Object,
-      required: true,
-      default: () => {}
-		}
-	},
-	mounted() {
-		console.log(this.tabName);
+			required: true,
+			default: () => ({
+			})
+		},
+		commuNum: {
+			type: Number,
+			required: true,
+			default: () => 0
+		},
 	}
 }
 </script>

@@ -46,7 +46,7 @@
   </div>
   <div class="form-item">
     <span class="form-label">洁净程度</span>
-    <Rate show-text allow-half v-model="is_clean"></Rate>
+    <Rate show-text v-model="is_clean"></Rate>
   </div>
   <div class="form-item">
     <span class="form-label">心理价位</span>
@@ -172,8 +172,14 @@ export default {
     },
     onReset() {
       for (const key of Object.keys(this.form)) {
+        if(key == 'hasPetList' || key == 'staylateList'){
+
+        }else {
         this.form[key] = '';
+        }
       }
+      this.is_clean = 0;
+
     },
     checkMail() {
       this.ismailErr = !ismail(this.form.email);
@@ -205,9 +211,9 @@ export default {
 
         const res = await api.publishRent(params);
         console.log(res)
-        if (res.status === 200) {
+        if (res.status === 0) {
           this.reachEnd = true;
-          // this.$router.push('/rent');
+          this.$router.push('/rent');
           
         }
       console.log(params)
