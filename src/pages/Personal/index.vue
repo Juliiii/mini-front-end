@@ -46,12 +46,12 @@ export default {
   computed: {
     ...mapState(['uid'])
   },
-  created() {
-    
+  async created() {
+    await this.getUserInfo();
   },
   methods: {
     async getUserInfo() {
-      const res = await api.getUserInfo(this.uid);
+      const res = await api.getUserInfo();
 
       this.user = res.data;
     },

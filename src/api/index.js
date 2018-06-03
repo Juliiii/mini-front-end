@@ -99,15 +99,14 @@ class Api {
    */
   async getMainData({cid}) {
     const params = qs.stringify({
-      cid,
+      poi: cid,
       openid: store.state.uid
     });
 
     const url = `${this.baseUrl}/maindata?${params}`;
 
     const res = await axios.get(url);
-
-    console.log(res);
+    return res.data;
   }
 
   /**
@@ -117,11 +116,14 @@ class Api {
    * @returns 
    * @memberof Api
    */
-  async getUserInfo (user_id) {
-    const url = `${this.baseUrl}/user/${user_id}}`;
+  async getUserInfo () {
+    const param = qs.stringify({
+      openid: store.state.uid
+    });
+
+    const url = `${this.baseUrl}/userinfor?${param}`;
 
     const res = await axios.get(url);
-
     return res.data;
   }
 
