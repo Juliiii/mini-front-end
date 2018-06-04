@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="form-item">
-    <IInput class="form-item" v-model="form.discription" type="textarea" :autosize="{minRows: 4,maxRows: 8}" placeholder="描述信息"></IInput>
+    <IInput class="form-item" v-model="form.description" type="textarea" :autosize="{minRows: 4,maxRows: 8}" placeholder="描述信息"></IInput>
   </div>
 
   <div class="button-group">
@@ -124,7 +124,8 @@ export default {
                 label: '总是'
             }
         ],
-        sleep_at: ''
+        sleep_at: '',
+        description: ''
        },
        is_clean: 0,
        ismailErr: false
@@ -204,6 +205,7 @@ export default {
           return;
         }
       }
+      reMove(this.form.description);
       try {
         this.loading = true;
         const params = {
@@ -215,7 +217,7 @@ export default {
           sleep_at: this.form.sleep_at,
           hobby: this.form.hobby,
           publish_at: new Date(),
-          discription: this.form.discription,
+          description: this.form.description,
           remark: ''
         };
 
@@ -252,6 +254,16 @@ function ismail(mail){
     console.log(mail, 'false')
       return false;  
   }   
+}  
+
+function reMove(obj){  
+    obj = obj.replace(/(\n)/g, "");    
+    obj = obj.replace(/(\t)/g, "");    
+    obj = obj.replace(/(\r)/g, "");    
+    obj = obj.replace(/<\/?[^>]*>/g, "");    
+    obj = obj.replace(/\s*/g, "");   
+    obj = obj.replace(/ /g, "");   
+    return obj;  
 }  
 </script>
 
