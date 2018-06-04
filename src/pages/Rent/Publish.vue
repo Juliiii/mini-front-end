@@ -26,10 +26,10 @@
     <IInput class="form-item" v-model="form.community" placeholder="小区名称"></IInput>
   </div> -->
   <div class="form-item">
-    <IInput class="form-item" v-bind:class="{ err: ismailErr}"  v-model="form.email" placeholder="邮箱" @on-blur="checkMail()" @on-change="() => {ismailErr = false}"></IInput>
+    <IInput class="form-item" v-bind:class="{ err: ismailErr}"  v-model="form.email" placeholder="邮箱" @on-blur="checkMail(form.email)" @on-change="() => {ismailErr = false}"></IInput>
   </div>
   <div class="form-item">
-    <IInput class="form-item" v-model="form.tele" placeholder="手机"></IInput>
+    <IInput class="form-item"  v-bind:class="{ err: isteleErr}" v-model="form.tele" placeholder="手机"  @on-blur="checkTele(form.tele)" @on-change="() => {isteleErr = false}"></IInput>
   </div>
   <div class="form-item">
     <IInput class="form-item" v-model="form.hobby" placeholder="#爱好"></IInput>
@@ -51,9 +51,9 @@
   <div class="form-item">
     <span class="form-label">心理价位</span>
     <div class="form-column column-price">
-      <IInput class="form-item" v-model="form.priceMin"></IInput>
+      <IInput class="form-item"  v-bind:class="{ err: ispriceErr}" v-model="form.price_low"  @on-blur="checkPrice(form.price_low,form.price_high)"  @on-change="() => {ispriceErr = false}"></IInput>
       <span class="form-label">-</span>
-      <IInput class="form-item" v-model="form.priceMax"></IInput>
+      <IInput class="form-item"  v-bind:class="{ err: ispriceErr}" v-model="form.price_high"  @on-blur="checkPrice(form.price_low,form.price_high)"  @on-change="() => {ispriceErr = false}"></IInput>
       
     </div>
   </div>
@@ -125,10 +125,14 @@ export default {
             }
         ],
         sleep_at: '',
-        description: ''
+        description: '',
+        price_low: '',
+        price_high: ''
        },
        is_clean: 0,
-       ismailErr: false
+       ismailErr: false,
+       isteleErr: false,
+       ispriceErr: false
     }
   },
   computed:{
@@ -183,8 +187,19 @@ export default {
       this.is_clean = 0;
 
     },
-    checkMail() {
-      // this.ismailErr = !ismail(this.form.email);
+    checkMail(email) {
+      this.ismailErr = !ismail(email);
+    },
+    checkTele(tele) {
+      this.isteleErr = !isTele(tele);
+    },
+    checkPrice(min, max) {
+      console.log(max, min)
+      if(max && min) {
+        if(max < min) {
+          this.ispriceErr = true;
+        }
+      }
     },
     handelPet(item) {
       this.form.adopt_pet = item.value;
@@ -210,8 +225,8 @@ export default {
         this.loading = true;
         const params = {
           contacts: 0,
-          price_low: this.form.priceMin,
-          price_high: this.form.priceMax,
+          price_low: this.form.price_low,
+          price_high: this.form.price_high,
           is_clean: this.is_clean,
           adopt_pet: this.form.adopt_pet,
           sleep_at: this.form.sleep_at,
@@ -240,7 +255,6 @@ export default {
       
     }
 
-    
   }
 }
 
@@ -254,7 +268,18 @@ function ismail(mail){
     console.log(mail, 'false')
       return false;  
   }   
-}  
+}
+
+function isTele(tele) {
+  var phoneReg =  /^1\d{10}$/;  
+//电话  
+  if (phoneReg.test(tele)) {  
+      // alert('请输入有效的手机号码！');  
+      return true;  
+  } else {
+    return false;
+  }
+}
 
 function reMove(obj){  
     obj = obj.replace(/(\n)/g, "");    

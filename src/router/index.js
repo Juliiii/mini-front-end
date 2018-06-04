@@ -20,59 +20,57 @@ import Auth from '@/pages/Auth';
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: login
-    },
-    {
-      path: '/comments',
-      name: 'Comments',
-      component: Comments,
-      children: [
-        {
-          path: '',
-          component: CommentsList
+    routes: [{
+            path: '/login',
+            name: 'Login',
+            component: login
         },
         {
-          path: 'publish',
-          component: CommentsPublish
+            path: '/comments',
+            name: 'Comments',
+            component: Comments,
+            children: [{
+                    path: '',
+                    component: CommentsList
+                },
+                {
+                    path: 'publish',
+                    component: CommentsPublish
+                },
+                {
+                    path: 'map',
+                    component: CommentsMap
+                }
+            ]
+        },
+        // 我要合租页面
+        {
+            path: '/rent',
+            name: 'Rent',
+            component: Rent,
+            children: [{
+                path: '',
+                component: RentList
+            }, {
+                path: 'publish',
+                component: RentPublish
+            }]
+        },
+        // 个人中心页面
+        {
+            path: '/personal',
+            name: 'Personal',
+            component: Personal
         },
         {
-          path: 'map',
-          component: CommentsMap
+            path: '/edit',
+            name: 'Edit',
+            component: Edit
+        },
+        {
+            path: '/auth',
+            name: 'Auth',
+            component: Auth
         }
-      ]
-    },
-    // 我要合租页面
-    {
-      path: '/rent',
-      name: 'Rent',
-      component: Rent,
-      children: [{
-        path: '',
-        component: RentList
-      }, {
-        path: 'publish',
-        component: RentPublish
-      }]
-    },
-    // 个人中心页面
-    {
-      path: '/personal',
-      name: 'Personal',
-      component: Personal
-    },
-    {
-      path: '/edit',
-      name: 'Edit',
-      component: Edit
-    },
-    {
-      path: '/auth',
-      name: 'Auth',
-      component: Auth
-    }
-  ]
+    ]
 });
