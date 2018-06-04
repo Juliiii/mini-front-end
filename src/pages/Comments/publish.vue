@@ -89,7 +89,7 @@ export default {
   },
   created() {
     if (!this.uid) {
-      this.$router.push('/');
+      this.$router.push('/login');
     }
     if (!this.cid) {
       this.$Message.error({

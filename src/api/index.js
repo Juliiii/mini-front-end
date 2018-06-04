@@ -8,7 +8,7 @@ class Api {
         // this.baseUrl = 'https://www.ultrasoftware.cn';
         // this.baseUrl = 'http://119.28.190.46:8002';
         // this.baseUrl = 'http://admin.ultrasoftware.cn';
-        this.baseUrl = 'http://jushuo.anycodes.cn';
+        this.baseUrl = 'https://jushuo.anycodes.cn';
 
     }
 
