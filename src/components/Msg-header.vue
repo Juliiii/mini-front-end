@@ -22,7 +22,7 @@ export default {
 	name: 'm-msg-header',
 	computed: {
 		avatar() {
-			return this.personInfo.picture ? this.personInfo.picture : 'https://upload.wikimedia.org/wikipedia/zh/thumb/9/99/Tencent_QQ.svg/1200px-Tencent_QQ.svg.png';
+			return this.personInfo.picture ? this.personInfo.picture : this.personInfo.photo ;
 		}
 	},
   props: {

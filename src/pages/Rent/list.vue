@@ -16,7 +16,7 @@
         :tabName="tabName"
         class="list-item"
         :item="rent"
-        :commuNum="rent.contacts"
+        :commuNum="rent.contactcount"
         @click.native="onClick()"/>  
         
       <m-dialog 
@@ -24,7 +24,7 @@
         @touchend.native = "slide($event)"
         :on-close="() => dialogStatus = false" 
         :item="rent"
-        :commuNum="rent.contacts"/>
+        :commuNum="rent.contactcount"/>
     </div>
     <div v-if="realRents.length === 0 && cid" >
       暂时没有人要合租哦？来发布一个吧~
@@ -43,11 +43,26 @@ import api from '../../api';
 import { debounce } from '@/util';
 import { mapState, mapMutations } from 'vuex';
 import { bus } from '@/bus';
+import {store} from '../../store';
 
 const sexMap = {
   f: '女',
   m: '男'
 }
+const sleep = ['不熬夜', '极少熬夜', '有时熬夜', '经常熬夜', '总是熬夜'];
+
+const clean = ['有点邋遢', '微微邋遢', '还好', '干净', '洁癖'];
+const pet = ['不养宠物', '不介意宠物', '养宠物'];
+
+const keyCnMap = {
+  adopt_pet: '小区名称',
+  sleep_at: '上班方式',
+  how_long: '上班时间',
+  is_clean: '干净',
+  has_food: '美食',
+  has_mall: '商业',
+  description: '描述信息'
+};
 
 var startX = 0,
     startY = 0,
@@ -75,6 +90,10 @@ export default {
       return this.rents.map(item => {
         const res = JSON.parse(JSON.stringify(item));
         res.sex = sexMap[res.sex];
+/*         res.is_clean = clean[res.is_clean];
+        res.sleep_at = sleep[res.sleep_at];
+        res.adopt_pet = pet[res.adopt_pet];
+ */        res.tags = [clean[res.is_clean], sleep[res.sleep_at], pet[res.adopt_pet]]
         console.log('rents',res);
 
         return res;

@@ -1,15 +1,15 @@
 <template>
 	<div class="m-bottom-wrapper">
 		<div v-if="tabName == 'comment'" class="icon-wrapper-com">
-			<!-- <div class="icon">
-				<Icon :type="tIconType" color="#FFC100" size="60px"></Icon>
-				{{moodInfo.thumbNum}}
-				<Icon :type="mIconType"></Icon>{{moodInfo.moodNum}}
+			<div class="icon">
+				<Icon type="thumbsup" color="#FFC100" size="60px"></Icon>
+				&nbsp;{{up}}&nbsp;&nbsp;
+				<Icon type="android-sad"></Icon>&nbsp;{{ down}}
 			</div>
  			<div class="tag" v-for="tag in tags" :key="tag">
 				<span>#{{tag}} &nbsp;</span>
 			</div>
- -->		</div>
+		</div>
 		
 		<div v-if="tabName == 'rent'" class="icon-wrapper-joint">
 			<div class="commu-num">
@@ -60,7 +60,7 @@ export default {
 		},
  		tags: {
       type: Array,
-      required: false,
+      // required: true,
       default: () => []
 		},
 	commuNum: {
@@ -68,18 +68,7 @@ export default {
       required: true,
       default: () => 0
 		},
-		moodInfo: {
-			type: Object,
-			default: function() {
-				return {
-					thumb: 'up',
-					thumbNum: 1110,
-					moodType: 'sad',
-					moodNum: 11111
-				}
-				
-			}
-		},
+		
 		state: {
 			type: Number
 		},
@@ -87,6 +76,12 @@ export default {
 			type: String
 		},
 		reqId: {
+			type: Number
+		},
+		up: {
+			type: Number
+		},
+		down: {
 			type: Number
 		}
   },
@@ -97,10 +92,10 @@ export default {
 	},
 	computed: {
     tIconType: function () {
-      return 'thumbs' + this.moodInfo.thumb
+      return 'thumbs' + this.up
 		},
 		mIconType: function () {
-      return 'android-' + this.moodInfo.moodType
+      return 'android-' + this.down
 		},
 		formatDate() {
 				return moment(new Date(this.date)).format('YYYY-MM-DD HH:mm:ss');

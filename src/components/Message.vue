@@ -7,7 +7,7 @@
 		<p>{{item.description}}</p>
 	</div>
 
-	<m-msg-bottom :tabName="tabName" :commuNum="commuNum"/>
+	<m-msg-bottom :up="item.up" :tags="item.tags" :down="item.down" :tabName="tabName" :commuNum="commuNum"/>
 </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
 	name: 'm-message',
   data () {
     return {
+			
     };
 	},
 	mounted( ){
@@ -38,7 +39,7 @@ export default {
 			type: Number,
 			required: true,
 			default: () => 0
-		},
+		}
 	}
 }
 </script>

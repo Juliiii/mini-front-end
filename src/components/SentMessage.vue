@@ -21,7 +21,7 @@ export default {
   },
   props: ['on-close', 'rid'],
   methods:{
-    onSubmit(rid) {
+    onSubmit() {
       // 提交留言
       if(this.content.length == 0){
         this.$Message.error({
@@ -38,7 +38,7 @@ export default {
       try {
         this.loading = true;
         const params = {
-          rid: 1,
+          rid: rid,
           content: content
         };
 

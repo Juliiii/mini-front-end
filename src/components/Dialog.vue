@@ -3,7 +3,7 @@
     <div class="box">
       <div class="dialog" @click.stop="() => {}">
         <m-message :commuNum="commuNum" :tabName="tabName" :item="item"/>
-        <m-sentMessage :on-close="onClose" />
+        <m-sentMessage :on-close="onClose" :rid="item.id" />
       </div>
     </div>
   </div>

@@ -26,9 +26,9 @@ const keyCnMap = {
   village: '小区名称',
   how_go: '上班方式',
   how_long: '上班时间',
-  is_clean: '干净程度',
-  has_food: '周边美食',
-  has_mall: '周边商业区',
+  is_clean: '干净',
+  has_food: '美食',
+  has_mall: '商业',
   description: '描述信息'
 };
 export default {

@@ -4,7 +4,9 @@ import { Message } from 'iview';
 // axios 配置
 axios.defaults.timeout = 5000;
 // axios.defaults.baseURL = 'https://www.ultrasoftware.cn';
-axios.defaults.baseURL = 'http://admin.ultrasoftware.cn';
+// axios.defaults.baseURL = 'http://admin.ultrasoftware.cn';
+axios.defaults.baseURL = 'http://jushuo.anycodes.cn';
+
 
 
 // http request 拦截器
